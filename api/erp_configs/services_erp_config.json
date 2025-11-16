@@ -1,0 +1,626 @@
+{
+    "domains": [
+        {
+            "id": "CRM",
+            "name": "Customer Relationship Management",
+            "entities": {
+                "Lead": {
+                    "label": "Lead",
+                    "fields": [
+                        {
+                            "name": "lead_id",
+                            "label": "Lead ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "lead_name",
+                            "label": "Lead Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "source",
+                            "label": "Source",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Open", "Contacted", "Qualified", "Lost"],
+                            "required": true
+                        },
+                        {
+                            "name": "assigned_to",
+                            "label": "Assigned To",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                },
+                "Opportunity": {
+                    "label": "Opportunity",
+                    "fields": [
+                        {
+                            "name": "opportunity_id",
+                            "label": "Opportunity ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "lead_id",
+                            "label": "Linked Lead",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "expected_value",
+                            "label": "Expected Value",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "probability",
+                            "label": "Probability (%)",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "Customer": {
+                    "label": "Customer",
+                    "fields": [
+                        {
+                            "name": "customer_id",
+                            "label": "Customer ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "company_name",
+                            "label": "Company Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "billing_details",
+                            "label": "Billing Details",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "industry_type",
+                            "label": "Industry Type",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Projects",
+            "name": "Projects",
+            "entities": {
+                "Project": {
+                    "label": "Project",
+                    "fields": [
+                        {
+                            "name": "project_id",
+                            "label": "Project ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project_name",
+                            "label": "Project Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Not Started", "In Progress", "Completed", "On Hold"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Task": {
+                    "label": "Task",
+                    "fields": [
+                        {
+                            "name": "task_id",
+                            "label": "Task ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project_id",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "assigned_to",
+                            "label": "Assigned To",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "expected_time",
+                            "label": "Expected Time (hours)",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "SalesAndInvoicing",
+            "name": "Sales and Invoicing",
+            "entities": {
+                "Quotation": {
+                    "label": "Quotation",
+                    "fields": [
+                        {
+                            "name": "quotation_id",
+                            "label": "Quotation ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items/Services",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_price",
+                            "label": "Total Price",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "validity",
+                            "label": "Validity Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "SalesInvoice": {
+                    "label": "Sales Invoice",
+                    "fields": [
+                        {
+                            "name": "invoice_id",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "sales_order_id",
+                            "label": "Sales Order",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "due_date",
+                            "label": "Due Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "Paid", "Overdue"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "TimesheetsAndBilling",
+            "name": "Timesheets and Billing",
+            "entities": {
+                "Timesheet": {
+                    "label": "Timesheet",
+                    "fields": [
+                        {
+                            "name": "timesheet_id",
+                            "label": "Timesheet ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "project_id",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "from_time",
+                            "label": "From Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "to_time",
+                            "label": "To Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "billable_hours",
+                            "label": "Billable Hours",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "ActivityType": {
+                    "label": "Activity Type",
+                    "fields": [
+                        {
+                            "name": "activity_id",
+                            "label": "Activity ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "activity_name",
+                            "label": "Activity Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "billing_rate",
+                            "label": "Billing Rate",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HRAndPayroll",
+            "name": "HR and Payroll",
+            "entities": {
+                "Employee": {
+                    "label": "Employee",
+                    "fields": [
+                        {
+                            "name": "employee_id",
+                            "label": "Employee ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "department",
+                            "label": "Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "role",
+                            "label": "Role",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "LeaveApplication": {
+                    "label": "Leave Application",
+                    "fields": [
+                        {
+                            "name": "leave_id",
+                            "label": "Leave ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "leave_type",
+                            "label": "Leave Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "from_date",
+                            "label": "From Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "to_date",
+                            "label": "To Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Pending", "Approved", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "SupportAndMaintenance",
+            "name": "Support and Maintenance",
+            "entities": {
+                "Issue": {
+                    "label": "Issue/Ticket",
+                    "fields": [
+                        {
+                            "name": "issue_id",
+                            "label": "Issue ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "subject",
+                            "label": "Subject",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "priority",
+                            "label": "Priority",
+                            "type": "select",
+                            "options": ["Low", "Medium", "High", "Urgent"],
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Open", "In Progress", "Resolved", "Closed"],
+                            "required": true
+                        }
+                    ]
+                },
+                "MaintenanceVisit": {
+                    "label": "Maintenance Visit",
+                    "fields": [
+                        {
+                            "name": "visit_id",
+                            "label": "Visit ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "technician",
+                            "label": "Technician",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "visit_date",
+                            "label": "Visit Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "purpose",
+                            "label": "Purpose",
+                            "type": "textarea",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Subscriptions",
+            "name": "Subscriptions",
+            "entities": {
+                "Subscription": {
+                    "label": "Subscription",
+                    "fields": [
+                        {
+                            "name": "subscription_id",
+                            "label": "Subscription ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_id",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "plan_id",
+                            "label": "Subscription Plan",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "auto_renewal",
+                            "label": "Auto Renewal",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AccountingAndFinance",
+            "name": "Accounting and Finance",
+            "entities": {
+                "ExpenseClaim": {
+                    "label": "Expense Claim",
+                    "fields": [
+                        {
+                            "name": "claim_id",
+                            "label": "Claim ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "expense_type",
+                            "label": "Expense Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "Approved", "Paid"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AssetManagement",
+            "name": "Asset Management",
+            "entities": {
+                "Asset": {
+                    "label": "Asset",
+                    "fields": [
+                        {
+                            "name": "asset_id",
+                            "label": "Asset ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "asset_name",
+                            "label": "Asset Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "category",
+                            "label": "Category",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "value",
+                            "label": "Value",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["In Use", "In Store", "Under Maintenance", "Scrapped"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

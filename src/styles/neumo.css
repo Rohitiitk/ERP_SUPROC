@@ -1,0 +1,410 @@
+/* =================================
+   File: src/styles/neumo.css
+   ================================= */
+
+/* Neumorphic tokens & motion-safe animated gradient */
+:root {
+  --surface: rgba(255, 255, 255, 0.98);
+  --shadow-1: rgba(15, 23, 42, 0.08);
+  --shadow-2: rgba(0, 0, 0, 0.02);
+  --highlight: rgba(255, 255, 255, 0.9);
+  --primary: #4f46e5; /* indigo-600 */
+  --surface-border: rgba(15, 23, 42, 0.04);
+  --active-surface: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+  --active-outline: rgba(79, 70, 229, 0.28);
+  --fade-color: rgba(255, 255, 255, 1);
+}
+
+.landing-light {
+  --surface: rgba(255, 255, 255, 0.96);
+  --shadow-1: rgba(15, 23, 42, 0.08);
+  --highlight: rgba(255, 255, 255, 0.9);
+  --primary: #4f46e5;
+  --surface-border: rgba(15, 23, 42, 0.04);
+  --active-surface: linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+  --active-outline: rgba(79, 70, 229, 0.28);
+  --fade-color: rgba(255, 255, 255, 1);
+}
+
+.landing-dark {
+  --surface: rgba(13, 20, 36, 0.92);
+  --shadow-1: rgba(3, 10, 24, 0.72);
+  --shadow-2: rgba(5, 12, 26, 0.4);
+  --highlight: rgba(73, 109, 168, 0.28);
+  --primary: #2fb8ff;
+  --surface-border: rgba(58, 103, 162, 0.28);
+  --active-surface: linear-gradient(180deg, rgba(27, 43, 68, 0.96) 0%, rgba(12, 22, 38, 0.98) 100%);
+  --active-outline: rgba(53, 161, 255, 0.4);
+  --fade-color: rgba(9, 14, 26, 1);
+  color-scheme: dark;
+}
+
+/* Liquid glass backdrops */
+.landing-liquid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  filter: saturate(110%);
+}
+
+.landing-liquid--light {
+  background:
+    radial-gradient(1200px 820px at 20% -8%, rgba(99, 102, 241, 0.08), transparent 62%),
+    radial-gradient(1100px 760px at 80% 12%, rgba(16, 185, 129, 0.06), transparent 65%),
+    linear-gradient(180deg, #f9fbff 0%, #f5f7ff 45%, #f8f9ff 100%);
+}
+
+.landing-liquid--dark {
+  background:
+    radial-gradient(1400px 900px at 10% -12%, rgba(47, 184, 255, 0.25), transparent 60%),
+    radial-gradient(1200px 820px at 85% 0%, rgba(99, 102, 241, 0.18), transparent 65%),
+    radial-gradient(1000px 900px at 50% 98%, rgba(9, 14, 26, 0.95), rgba(5, 9, 21, 0.98));
+  backdrop-filter: blur(4px);
+}
+
+
+/* Neumorphic surfaces */
+.neumo-surface { background: var(--surface); box-shadow: 8px 8px 24px var(--shadow-1), -8px -8px 24px var(--highlight); border: 1px solid var(--surface-border, transparent); position: relative; }
+.neumo-inset   { background: var(--surface); box-shadow: inset 8px 8px 24px var(--shadow-1), inset -8px -8px 24px var(--highlight); border: 1px solid var(--surface-border, transparent); }
+.neumo-hover   { box-shadow: 4px 4px 14px var(--shadow-1), -4px -4px 14px var(--highlight); }
+
+.neumo-active-strong {
+  box-shadow: 0 0 0 2px var(--active-outline), 10px 10px 28px var(--shadow-1), -10px -10px 28px var(--highlight);
+  background: var(--active-surface);
+}
+.neumo-active { outline: 2px solid rgba(79, 70, 229, 0.25); }
+
+.landing-dark .neumo-surface {
+  box-shadow:
+    6px 6px 18px rgba(5, 12, 26, 0.45),
+    -6px -6px 18px rgba(67, 99, 150, 0.16);
+}
+.landing-dark .neumo-active-strong {
+  box-shadow:
+    0 0 0 2px var(--active-outline),
+    8px 8px 22px rgba(5, 12, 26, 0.48),
+    -8px -8px 22px rgba(74, 110, 168, 0.18);
+}
+
+/* Buttons */
+.btn-primary { @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500; }
+.btn-ghost   { @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500; }
+
+/* CTA shimmer (subtle) */
+.btn-shimmer { position: relative; overflow: hidden; }
+.btn-shimmer::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
+  transform: translateX(-100%);
+}
+.btn-shimmer:hover::after,
+.btn-shimmer:focus-visible::after {
+  animation: shimmer 1.2s ease-out;
+}
+@keyframes shimmer { from { transform: translateX(-120%);} to { transform: translateX(120%);} }
+
+/* Tilt card using CSS custom props set by JS */
+.tilt-card {
+  transform: perspective(800px) rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  will-change: transform;
+}
+
+/* Touch ripple with JS-coordinates; centered fallback */
+.tap-ripple { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.tap-ripple:active::after {
+  content: ""; position: absolute;
+  left: var(--ripple-x, 50%); top: var(--ripple-y, 50%);
+  transform: translate(-50%, -50%);
+  width: 180%; height: 180%;
+  border-radius: 9999px;
+  background: rgba(79,70,229,0.08);
+  background: color-mix(in srgb, var(--primary) 24%, transparent);
+  animation: ripple 420ms ease-out;
+  pointer-events: none;
+}
+@keyframes ripple {
+  from { opacity: 0.3; transform: translate(-50%, -50%) scale(0.8); }
+  to   { opacity: 0;   transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Horizontal scroll utility (fixes mobile “stuck” rows) */
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+.x-pan     { touch-action: pan-x !important; }
+
+/* Show that more content exists: edge-fade hint */
+.has-fade { position: relative; }
+.has-fade::before,
+.has-fade::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 24px; pointer-events: none; z-index: 1;
+  background: linear-gradient(to right, var(--fade-color, rgba(255,255,255,1)), rgba(255,255,255,0));
+}
+.has-fade::after { right: 0; left: auto; transform: scaleX(-1); }
+.has-fade::before { left: 0; }
+
+/* Hide scrollbars for the horizontal card strip */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Better numerals */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* =============================
+   Landing page theme toggle
+   ============================= */
+.landing-toggle {
+  --toggle-size: 2.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--toggle-size);
+  height: var(--toggle-size);
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.86);
+  color: #475569;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(14px);
+  cursor: pointer;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    color 0.4s ease,
+    transform 0.25s ease;
+}
+
+.landing-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.14);
+}
+
+.landing-toggle:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.45);
+  outline-offset: 3px;
+}
+
+.landing-toggle__icon {
+  width: 1.55rem;
+  height: 1.55rem;
+  display: block;
+}
+
+.landing-toggle__icon circle,
+.landing-toggle__icon path {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.landing-toggle[data-theme='dark'] {
+  background: rgba(8, 15, 30, 0.78);
+  border-color: rgba(56, 189, 248, 0.22);
+  color: #e2e8f0;
+  box-shadow: 0 14px 28px rgba(4, 11, 28, 0.55);
+}
+
+.landing-toggle[data-theme='dark']:hover {
+  box-shadow: 0 18px 32px rgba(4, 11, 28, 0.6);
+}
+
+.landing-light .landing-toggle {
+  color: #475569;
+}
+
+.landing-dark .landing-toggle {
+  color: #e2e8f0;
+}
+.landing-pearl-btn {
+  --white: #ffe7ff;
+  --bg: #111927;
+  --radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  border: 0;
+  position: relative;
+  border-radius: var(--radius);
+  background-color: var(--bg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.3s ease;
+  padding: 0;
+  text-decoration: none;
+  min-width: 0;
+  box-shadow:
+    inset 0 0.24rem 0.7rem rgba(255, 255, 255, 0.28),
+    inset 0 -0.08rem 0.28rem rgba(0, 0, 0, 0.65),
+    inset 0 -0.3rem 0.7rem rgba(255, 255, 255, 0.4),
+    0 1.8rem 2.2rem rgba(0, 0, 0, 0.28),
+    0 0.9rem 1rem -0.6rem rgba(0, 0, 0, 0.75);
+}
+
+.landing-pearl-btn__wrap {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 0.65rem 1.35rem;
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-pearl-btn__wrap p {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  transition: transform 0.2s ease;
+  transform: translateY(3%);
+  mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 48%, transparent);
+}
+
+.landing-pearl-btn__wrap p span:nth-child(2) {
+  display: none;
+}
+
+.landing-pearl-btn:hover .landing-pearl-btn__wrap p span:nth-child(1) {
+  display: none;
+}
+
+.landing-pearl-btn:hover .landing-pearl-btn__wrap p span:nth-child(2) {
+  display: inline-block;
+}
+
+.landing-pearl-btn__wrap::before,
+.landing-pearl-btn__wrap::after {
+  content: "";
+  position: absolute;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.landing-pearl-btn__wrap::before {
+  left: -20%;
+  right: -20%;
+  bottom: 30%;
+  top: -110%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.landing-pearl-btn__wrap::after {
+  left: 8%;
+  right: 8%;
+  top: 14%;
+  bottom: 42%;
+  border-radius: 22px 22px 0 0;
+  box-shadow: inset 0 8px 6px -9px rgba(255, 255, 255, 0.75);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(0, 0, 0, 0) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.landing-pearl-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 0.26rem 0.55rem rgba(255, 255, 255, 0.38),
+    inset 0 -0.1rem 0.28rem rgba(0, 0, 0, 0.6),
+    inset 0 -0.35rem 0.75rem rgba(255, 255, 255, 0.55),
+    0 2.1rem 2.5rem rgba(0, 0, 0, 0.28),
+    0 1.1rem 1.2rem -0.6rem rgba(0, 0, 0, 0.78);
+  filter: saturate(1.08);
+}
+
+.landing-pearl-btn:hover .landing-pearl-btn__wrap::before {
+  transform: translateY(-4%);
+}
+
+.landing-pearl-btn:hover .landing-pearl-btn__wrap::after {
+  opacity: 0.45;
+  transform: translateY(5%);
+}
+
+.landing-pearl-btn:hover .landing-pearl-btn__wrap p {
+  transform: translateY(-4%);
+}
+
+.landing-pearl-btn:active {
+  transform: translateY(3px);
+  box-shadow:
+    inset 0 0.28rem 0.5rem rgba(255, 255, 255, 0.45),
+    inset 0 -0.12rem 0.3rem rgba(0, 0, 0, 0.7),
+    inset 0 -0.35rem 0.8rem rgba(255, 255, 255, 0.35),
+    0 1.8rem 2.2rem rgba(0, 0, 0, 0.25),
+    0 0.9rem 1.1rem -0.6rem rgba(0, 0, 0, 0.78);
+}
+
+.landing-dark .landing-pearl-btn {
+  --bg: #050b1a;
+  box-shadow:
+    inset 0 0.24rem 0.7rem rgba(255, 255, 255, 0.18),
+    inset 0 -0.1rem 0.3rem rgba(0, 0, 0, 0.6),
+    inset 0 -0.35rem 0.75rem rgba(56, 189, 248, 0.32),
+    0 1.6rem 2.4rem rgba(0, 0, 0, 0.45),
+    0 0.9rem 1.1rem -0.6rem rgba(3, 10, 24, 0.8);
+}
+
+.landing-dark .landing-pearl-btn__wrap {
+  color: rgba(226, 242, 255, 0.84);
+}
+
+.landing-dark .landing-pearl-btn:hover {
+  filter: saturate(1.12);
+  box-shadow:
+    inset 0 0.3rem 0.6rem rgba(255, 255, 255, 0.22),
+    inset 0 -0.12rem 0.32rem rgba(0, 0, 0, 0.58),
+    inset 0 -0.4rem 0.85rem rgba(56, 189, 248, 0.45),
+    0 1.9rem 2.6rem rgba(0, 0, 0, 0.48),
+    0 1rem 1.3rem -0.55rem rgba(2, 8, 22, 0.82);
+}
+
+@media (max-width: 768px) {
+  .landing-pearl-btn__wrap {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.2rem;
+  }
+
+  .landing-pearl-btn__wrap p {
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .landing-toggle {
+    --toggle-height: 1.45rem;
+    padding: 0.16rem 0.32rem;
+  }
+
+  .landing-pearl-btn {
+    box-shadow:
+      inset 0 0.22rem 0.55rem rgba(255, 255, 255, 0.26),
+      inset 0 -0.08rem 0.24rem rgba(0, 0, 0, 0.6),
+      inset 0 -0.26rem 0.6rem rgba(255, 255, 255, 0.38),
+      0 1.4rem 1.8rem rgba(0, 0, 0, 0.26),
+      0 0.8rem 0.9rem -0.6rem rgba(0, 0, 0, 0.72);
+  }
+
+  .landing-pearl-btn__wrap {
+    font-size: 0.84rem;
+    padding: 0.48rem 1.05rem;
+  }
+
+  .landing-pearl-btn__wrap p {
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .landing-toggle {
+    --toggle-height: 1.38rem;
+    padding: 0.14rem 0.28rem;
+  }
+
+  .landing-pearl-btn__wrap {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.95rem;
+  }
+}

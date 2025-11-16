@@ -1,0 +1,556 @@
+{
+    "domains": [
+        {
+            "id": "Manufacturing",
+            "name": "Manufacturing",
+            "entities": {
+                "WorkOrder": {
+                    "label": "Work Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Work Order ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "production_item",
+                            "label": "Production Item",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "quantity",
+                            "label": "Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "bom_no",
+                            "label": "BOM No",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "fg_warehouse",
+                            "label": "Finished Goods Warehouse",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "In Process", "Completed", "Stopped"],
+                            "required": true
+                        },
+                        {
+                            "name": "planned_start_date",
+                            "label": "Planned Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "planned_end_date",
+                            "label": "Planned End Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "BillOfMaterials": {
+                    "label": "Bill of Materials (BOM)",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "BOM ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "item",
+                            "label": "Item",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "quantity",
+                            "label": "Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "uom",
+                            "label": "UOM",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items (Raw Materials)",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "operations",
+                            "label": "Operations",
+                            "type": "table",
+                            "required": false
+                        },
+                        {
+                            "name": "is_active",
+                            "label": "Is Active",
+                            "type": "checkbox",
+                            "required": true
+                        }
+                    ]
+                },
+                "JobCard": {
+                    "label": "Job Card",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Job Card ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "work_order",
+                            "label": "Work Order",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "operation",
+                            "label": "Operation",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "for_quantity",
+                            "label": "For Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "workstation",
+                            "label": "Workstation",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Pending", "In Progress", "Completed"],
+                            "required": true
+                        },
+                        {
+                            "name": "actual_start_date",
+                            "label": "Actual Start Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "actual_end_date",
+                            "label": "Actual End Date",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Inventory",
+            "name": "Inventory (Stock)",
+            "entities": {
+                "Item": {
+                    "label": "Item",
+                    "fields": [
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "item_name",
+                            "label": "Item Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "item_group",
+                            "label": "Item Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "stock_uom",
+                            "label": "Stock UOM",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "has_batch_no",
+                            "label": "Has Batch No",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                },
+                "Warehouse": {
+                    "label": "Warehouse",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Warehouse ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "warehouse_type",
+                            "label": "Warehouse Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "company",
+                            "label": "Company",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "is_group",
+                            "label": "Is Group",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                },
+                "StockEntry": {
+                    "label": "Stock Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Stock Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "purpose",
+                            "label": "Purpose",
+                            "type": "select",
+                            "options": ["Material Receipt", "Material Issue", "Stock Transfer"],
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "source_warehouse",
+                            "label": "Source Warehouse",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "target_warehouse",
+                            "label": "Target Warehouse",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "QualityManagement",
+            "name": "Quality Management",
+            "entities": {
+                "QualityInspection": {
+                    "label": "Quality Inspection",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Quality Inspection ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Passed", "Failed", "Pending"],
+                            "required": true
+                        },
+                        {
+                            "name": "inspected_on",
+                            "label": "Inspected On",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "inspected_by",
+                            "label": "Inspected By",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Procurement",
+            "name": "Procurement (Buying)",
+            "entities": {
+                "Supplier": {
+                    "label": "Supplier",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Supplier Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "supplier_group",
+                            "label": "Supplier Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "default_currency",
+                            "label": "Default Currency",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "country",
+                            "label": "Country",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "PurchaseOrder": {
+                    "label": "Purchase Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "PO Number",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "supplier",
+                            "label": "Supplier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Order Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "Completed", "Cancelled"],
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Sales",
+            "name": "Sales (Selling)",
+            "entities": {
+                "Customer": {
+                    "label": "Customer",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Customer Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "customer_group",
+                            "label": "Customer Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "territory",
+                            "label": "Territory",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "type",
+                            "label": "Customer Type",
+                            "type": "select",
+                            "options": ["Company", "Individual"],
+                            "required": true
+                        }
+                    ]
+                },
+                "SalesOrder": {
+                    "label": "Sales Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Sales Order ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Order Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Confirmed", "Completed", "Cancelled"],
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Accounting",
+            "name": "Accounting",
+            "entities": {
+                "JournalEntry": {
+                    "label": "Journal Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "voucher_type",
+                            "label": "Voucher Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "accounts",
+                            "label": "Accounts",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_debit",
+                            "label": "Total Debit",
+                            "type": "number",
+                            "read_only": true
+                        },
+                        {
+                            "name": "total_credit",
+                            "label": "Total Credit",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                },
+                "Invoice": {
+                    "label": "Invoice",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_supplier",
+                            "label": "Customer/Supplier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total",
+                            "label": "Total",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

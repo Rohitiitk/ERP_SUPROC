@@ -1,0 +1,521 @@
+{
+    "domains": [
+        {
+            "id": "FinancialManagement",
+            "name": "Financial Management",
+            "entities": {
+                "Fund": {
+                    "label": "Fund Accounting",
+                    "fields": [
+                        {
+                            "name": "fund_id",
+                            "label": "Fund ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "fund_name",
+                            "label": "Fund Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "fund_type",
+                            "label": "Fund Type",
+                            "type": "select",
+                            "options": ["Unrestricted", "Temporarily Restricted", "Permanently Restricted"],
+                            "required": true
+                        },
+                        {
+                            "name": "balance",
+                            "label": "Balance",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                },
+                "Budget": {
+                    "label": "Budgeting and Forecasting",
+                    "fields": [
+                        {
+                            "name": "budget_id",
+                            "label": "Budget ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "fiscal_year",
+                            "label": "Fiscal Year",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "program_or_department",
+                            "label": "Program/Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "allocated_amount",
+                            "label": "Allocated Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_amount",
+                            "label": "Actual Amount",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "GrantManagement",
+            "name": "Grant Management",
+            "entities": {
+                "Grant": {
+                    "label": "Grant Tracking",
+                    "fields": [
+                        {
+                            "name": "grant_id",
+                            "label": "Grant ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "grant_name",
+                            "label": "Grant Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "funder",
+                            "label": "Funder",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "funding_amount",
+                            "label": "Funding Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Application", "Active", "Completed", "Closed"],
+                            "required": true
+                        }
+                    ]
+                },
+                "GrantExpenditure": {
+                    "label": "Grant Expenditures",
+                    "fields": [
+                        {
+                            "name": "expenditure_id",
+                            "label": "Expenditure ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "grant_id",
+                            "label": "Grant",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "expense_date",
+                            "label": "Expense Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "DonorManagementAndCRM",
+            "name": "Donor Management & CRM",
+            "entities": {
+                "Donor": {
+                    "label": "Donor Database",
+                    "fields": [
+                        {
+                            "name": "donor_id",
+                            "label": "Donor ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "email",
+                            "label": "Email",
+                            "type": "email",
+                            "required": false
+                        },
+                        {
+                            "name": "phone",
+                            "label": "Phone",
+                            "type": "tel",
+                            "required": false
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "Donation": {
+                    "label": "Donation Tracking",
+                    "fields": [
+                        {
+                            "name": "donation_id",
+                            "label": "Donation ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "donor_id",
+                            "label": "Donor",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "donation_type",
+                            "label": "Donation Type",
+                            "type": "select",
+                            "options": ["Monetary", "In-Kind"],
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "donation_date",
+                            "label": "Donation Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "campaign_id",
+                            "label": "Campaign",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                },
+                "Volunteer": {
+                    "label": "Volunteer Management",
+                    "fields": [
+                        {
+                            "name": "volunteer_id",
+                            "label": "Volunteer ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "role",
+                            "label": "Role",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "hours_logged",
+                            "label": "Hours Logged",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ProgramManagement",
+            "name": "Program Management",
+            "entities": {
+                "Program": {
+                    "label": "Program Planning",
+                    "fields": [
+                        {
+                            "name": "program_id",
+                            "label": "Program ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "program_name",
+                            "label": "Program Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "goals",
+                            "label": "Goals",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "timeline",
+                            "label": "Timeline",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                },
+                "Beneficiary": {
+                    "label": "Beneficiary Tracking",
+                    "fields": [
+                        {
+                            "name": "beneficiary_id",
+                            "label": "Beneficiary ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "program_id",
+                            "label": "Program",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "enrollment_date",
+                            "label": "Enrollment Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HumanResourcesAndPayroll",
+            "name": "Human Resources (HR) & Payroll",
+            "entities": {
+                "Employee": {
+                    "label": "Employee Records",
+                    "fields": [
+                        {
+                            "name": "employee_id",
+                            "label": "Employee ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "role",
+                            "label": "Role",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contract_details",
+                            "label": "Contract Details",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "Payroll": {
+                    "label": "Payroll",
+                    "fields": [
+                        {
+                            "name": "payroll_id",
+                            "label": "Payroll ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "pay_period",
+                            "label": "Pay Period",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "gross_salary",
+                            "label": "Gross Salary",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "deductions",
+                            "label": "Deductions",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "net_salary",
+                            "label": "Net Salary",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InventoryAndAssetManagement",
+            "name": "Inventory and Asset Management",
+            "entities": {
+                "Asset": {
+                    "label": "Asset Register",
+                    "fields": [
+                        {
+                            "name": "asset_id",
+                            "label": "Asset ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "asset_name",
+                            "label": "Asset Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "purchase_date",
+                            "label": "Purchase Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "value",
+                            "label": "Value",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "depreciation",
+                            "label": "Depreciation",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "InventoryItem": {
+                    "label": "Inventory Management",
+                    "fields": [
+                        {
+                            "name": "item_id",
+                            "label": "Item ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "item_name",
+                            "label": "Item Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "quantity",
+                            "label": "Quantity on Hand",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "location",
+                            "label": "Location",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ComplianceAndReporting",
+            "name": "Compliance and Reporting",
+            "entities": {
+                "AuditTrail": {
+                    "label": "Audit Trail",
+                    "fields": [
+                        {
+                            "name": "log_id",
+                            "label": "Log ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "user",
+                            "label": "User",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "timestamp",
+                            "label": "Timestamp",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "action",
+                            "label": "Action",
+                            "type": "textarea",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

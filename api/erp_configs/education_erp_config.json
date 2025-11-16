@@ -1,0 +1,1095 @@
+{
+    "domains": [
+        {
+            "id": "StudentManagement",
+            "name": "Student Management",
+            "entities": {
+                "Student": {
+                    "label": "Students",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "first_name",
+                            "label": "First Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "last_name",
+                            "label": "Last Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "dob",
+                            "label": "Date of Birth",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "gender",
+                            "label": "Gender",
+                            "type": "select",
+                            "options": ["Male", "Female", "Other"],
+                            "required": true
+                        },
+                        {
+                            "name": "contact_number",
+                            "label": "Contact Number",
+                            "type": "tel",
+                            "required": true
+                        },
+                        {
+                            "name": "email_id",
+                            "label": "Email ID",
+                            "type": "email",
+                            "required": true
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "course_id",
+                            "label": "Course ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "enrollment_date",
+                            "label": "Enrollment Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "current_year_semester",
+                            "label": "Current Year/Semester",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "guardian_details",
+                            "label": "Guardian Details",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AdmissionsManagement",
+            "name": "Admissions Management",
+            "entities": {
+                "Applicant": {
+                    "label": "Applicants",
+                    "fields": [
+                        {
+                            "name": "application_id",
+                            "label": "Application ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "date_of_birth",
+                            "label": "Date of Birth",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "program_applied",
+                            "label": "Program Applied",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Applied", "Shortlisted", "Accepted", "Rejected"],
+                            "required": true
+                        },
+                        {
+                            "name": "entrance_score",
+                            "label": "Entrance Score",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "interview_date",
+                            "label": "Interview Date",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                },
+                "EntranceExam": {
+                    "label": "Entrance Exams",
+                    "fields": [
+                        {
+                            "name": "exam_id",
+                            "label": "Exam ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "subject",
+                            "label": "Subject",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "max_marks",
+                            "label": "Max Marks",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "exam_date",
+                            "label": "Exam Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "result_status",
+                            "label": "Result Status",
+                            "type": "select",
+                            "options": ["Pending", "Published"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "CourseAndCurriculumManagement",
+            "name": "Course & Curriculum Management",
+            "entities": {
+                "Course": {
+                    "label": "Courses",
+                    "fields": [
+                        {
+                            "name": "course_code",
+                            "label": "Course Code",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "course_name",
+                            "label": "Course Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "credits",
+                            "label": "Credits",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "department",
+                            "label": "Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "duration",
+                            "label": "Duration",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "semester",
+                            "label": "Semester",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "Subject": {
+                    "label": "Subjects",
+                    "fields": [
+                        {
+                            "name": "subject_id",
+                            "label": "Subject ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "subject_name",
+                            "label": "Subject Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "course_code",
+                            "label": "Course Code",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "semester",
+                            "label": "Semester",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "syllabus_file",
+                            "label": "Syllabus File",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "FacultyStaffManagement",
+            "name": "Faculty/Staff Management",
+            "entities": {
+                "Faculty": {
+                    "label": "Faculty",
+                    "fields": [
+                        {
+                            "name": "faculty_id",
+                            "label": "Faculty ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "email",
+                            "label": "Email",
+                            "type": "email",
+                            "required": true
+                        },
+                        {
+                            "name": "designation",
+                            "label": "Designation",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "department",
+                            "label": "Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "joining_date",
+                            "label": "Joining Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "employment_status",
+                            "label": "Employment Status",
+                            "type": "select",
+                            "options": ["Active", "On Leave", "Resigned"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Department": {
+                    "label": "Departments",
+                    "fields": [
+                        {
+                            "name": "dept_id",
+                            "label": "Department ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "hod",
+                            "label": "HOD",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "no_of_staff",
+                            "label": "No. of Staff",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ExaminationAndGrading",
+            "name": "Examination & Grading",
+            "entities": {
+                "Exam": {
+                    "label": "Exams",
+                    "fields": [
+                        {
+                            "name": "exam_id",
+                            "label": "Exam ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "course",
+                            "label": "Course",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "semester",
+                            "label": "Semester",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "exam_date",
+                            "label": "Exam Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "total_marks",
+                            "label": "Total Marks",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "Result": {
+                    "label": "Results",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "subject_id",
+                            "label": "Subject ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "marks_obtained",
+                            "label": "Marks Obtained",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "grade",
+                            "label": "Grade",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "result_status",
+                            "label": "Result Status",
+                            "type": "select",
+                            "options": ["Pass", "Fail"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AttendanceManagement",
+            "name": "Attendance Management",
+            "entities": {
+                "AttendanceLog": {
+                    "label": "Attendance Logs",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "course_id",
+                            "label": "Course ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "date",
+                            "label": "Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Present", "Absent"],
+                            "required": true
+                        },
+                        {
+                            "name": "faculty_id",
+                            "label": "Faculty ID",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "Schedule": {
+                    "label": "Schedules",
+                    "fields": [
+                        {
+                            "name": "subject_id",
+                            "label": "Subject ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "faculty_id",
+                            "label": "Faculty ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "time_slot",
+                            "label": "Time Slot",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "day",
+                            "label": "Day",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "FeesAndBilling",
+            "name": "Fees & Billing",
+            "entities": {
+                "Invoice": {
+                    "label": "Invoices",
+                    "fields": [
+                        {
+                            "name": "invoice_id",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "fee_type",
+                            "label": "Fee Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "due_date",
+                            "label": "Due Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "paid_status",
+                            "label": "Paid Status",
+                            "type": "select",
+                            "options": ["Paid", "Unpaid", "Partially Paid"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Payment": {
+                    "label": "Payments",
+                    "fields": [
+                        {
+                            "name": "payment_id",
+                            "label": "Payment ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "mode",
+                            "label": "Mode",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Transaction Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "amount_paid",
+                            "label": "Amount Paid",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "Scholarship": {
+                    "label": "Scholarships",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "type",
+                            "label": "Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "approval_status",
+                            "label": "Approval Status",
+                            "type": "select",
+                            "options": ["Pending", "Approved", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "LibraryManagement",
+            "name": "Library Management",
+            "entities": {
+                "Book": {
+                    "label": "Books",
+                    "fields": [
+                        {
+                            "name": "book_id",
+                            "label": "Book ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "title",
+                            "label": "Title",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "author",
+                            "label": "Author",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "isbn",
+                            "label": "ISBN",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "publisher",
+                            "label": "Publisher",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "availability",
+                            "label": "Availability",
+                            "type": "select",
+                            "options": ["Available", "Issued"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Transaction": {
+                    "label": "Transactions",
+                    "fields": [
+                        {
+                            "name": "transaction_id",
+                            "label": "Transaction ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "book_id",
+                            "label": "Book ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "issue_date",
+                            "label": "Issue Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "return_date",
+                            "label": "Return Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "fine",
+                            "label": "Fine",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "Member": {
+                    "label": "Members",
+                    "fields": [
+                        {
+                            "name": "member_id",
+                            "label": "Member ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "type",
+                            "label": "Type",
+                            "type": "select",
+                            "options": ["Student", "Faculty"],
+                            "required": true
+                        },
+                        {
+                            "name": "contact_info",
+                            "label": "Contact Info",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HostelAndAccommodation",
+            "name": "Hostel & Accommodation",
+            "entities": {
+                "HostelRoom": {
+                    "label": "Hostel Rooms",
+                    "fields": [
+                        {
+                            "name": "room_no",
+                            "label": "Room No",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "block",
+                            "label": "Block",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "capacity",
+                            "label": "Capacity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "room_type",
+                            "label": "Room Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "availability",
+                            "label": "Availability",
+                            "type": "select",
+                            "options": ["Available", "Occupied"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Allotment": {
+                    "label": "Allotments",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "room_no",
+                            "label": "Room No",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "check_in_date",
+                            "label": "Check-in Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "check_out_date",
+                            "label": "Check-out Date",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "TransportManagement",
+            "name": "Transport Management",
+            "entities": {
+                "Bus": {
+                    "label": "Buses",
+                    "fields": [
+                        {
+                            "name": "bus_no",
+                            "label": "Bus No",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "driver_name",
+                            "label": "Driver Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "capacity",
+                            "label": "Capacity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Active", "Inactive", "Under Maintenance"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Route": {
+                    "label": "Routes",
+                    "fields": [
+                        {
+                            "name": "route_id",
+                            "label": "Route ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "pickup_points",
+                            "label": "Pickup Points",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "start_time",
+                            "label": "Start Time",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "end_time",
+                            "label": "End Time",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "TransportRecord": {
+                    "label": "Transport Records",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "route_id",
+                            "label": "Route ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "validity_period",
+                            "label": "Validity Period",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "fee_status",
+                            "label": "Fee Status",
+                            "type": "select",
+                            "options": ["Paid", "Unpaid"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AlumniManagement",
+            "name": "Alumni Management",
+            "entities": {
+                "Alumnus": {
+                    "label": "Alumni",
+                    "fields": [
+                        {
+                            "name": "alumni_id",
+                            "label": "Alumni ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "graduation_year",
+                            "label": "Graduation Year",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "degree",
+                            "label": "Degree",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_info",
+                            "label": "Contact Info",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "current_occupation",
+                            "label": "Current Occupation",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                },
+                "Donation": {
+                    "label": "Donations",
+                    "fields": [
+                        {
+                            "name": "donation_id",
+                            "label": "Donation ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "alumni_id",
+                            "label": "Alumni ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "date",
+                            "label": "Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "Event": {
+                    "label": "Events",
+                    "fields": [
+                        {
+                            "name": "event_id",
+                            "label": "Event ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "date",
+                            "label": "Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "venue",
+                            "label": "Venue",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "participants",
+                            "label": "Participants",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "PlacementAndTraining",
+            "name": "Placement & Training",
+            "entities": {
+                "StudentTrained": {
+                    "label": "Students Trained",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "program",
+                            "label": "Program",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "trainer_name",
+                            "label": "Trainer Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "completion_status",
+                            "label": "Completion Status",
+                            "type": "select",
+                            "options": ["In Progress", "Completed"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Company": {
+                    "label": "Companies",
+                    "fields": [
+                        {
+                            "name": "company_id",
+                            "label": "Company ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "industry",
+                            "label": "Industry",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "job_role",
+                            "label": "Job Role",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "ctc_offered",
+                            "label": "CTC Offered",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "Offer": {
+                    "label": "Offers",
+                    "fields": [
+                        {
+                            "name": "student_id",
+                            "label": "Student ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "company_id",
+                            "label": "Company ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "offer_date",
+                            "label": "Offer Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Offered", "Accepted", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

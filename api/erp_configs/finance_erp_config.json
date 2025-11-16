@@ -1,0 +1,465 @@
+{
+    "domains": [
+        {
+            "id": "AccountingAndFinancialManagement",
+            "name": "Accounting & Financial Management",
+            "entities": {
+                "JournalEntry": {
+                    "label": "Journal Entry",
+                    "fields": [
+                        {
+                            "name": "entry_id",
+                            "label": "Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "entry_date",
+                            "label": "Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "accounts",
+                            "label": "Accounts",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "LedgerAccount": {
+                    "label": "General Ledger",
+                    "fields": [
+                        {
+                            "name": "account_id",
+                            "label": "Account ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "account_name",
+                            "label": "Account Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "account_type",
+                            "label": "Account Type",
+                            "type": "select",
+                            "options": ["Asset", "Liability", "Equity", "Income", "Expense"],
+                            "required": true
+                        },
+                        {
+                            "name": "balance",
+                            "label": "Balance",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "CRM",
+            "name": "Client Relationship Management (CRM)",
+            "entities": {
+                "Lead": {
+                    "label": "Lead",
+                    "fields": [
+                        {
+                            "name": "lead_id",
+                            "label": "Lead ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "source",
+                            "label": "Source",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Open", "Contacted", "Qualified", "Converted", "Lost"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Client": {
+                    "label": "Client",
+                    "fields": [
+                        {
+                            "name": "client_id",
+                            "label": "Client ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "client_name",
+                            "label": "Client Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_email",
+                            "label": "Email",
+                            "type": "email",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_phone",
+                            "label": "Phone",
+                            "type": "tel",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InvestmentAndPortfolioManagement",
+            "name": "Investment & Portfolio Management",
+            "entities": {
+                "InvestmentProduct": {
+                    "label": "Investment Product",
+                    "fields": [
+                        {
+                            "name": "product_id",
+                            "label": "Product ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "product_name",
+                            "label": "Product Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "asset_class",
+                            "label": "Asset Class",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "current_nav",
+                            "label": "Current NAV",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "ClientPortfolio": {
+                    "label": "Client Portfolio",
+                    "fields": [
+                        {
+                            "name": "portfolio_id",
+                            "label": "Portfolio ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "client_id",
+                            "label": "Client",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "investments",
+                            "label": "Investments",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_value",
+                            "label": "Total Portfolio Value",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InsuranceManagement",
+            "name": "Insurance Management",
+            "entities": {
+                "Policy": {
+                    "label": "Policy",
+                    "fields": [
+                        {
+                            "name": "policy_id",
+                            "label": "Policy ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "policyholder_id",
+                            "label": "Policyholder",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "policy_type",
+                            "label": "Policy Type",
+                            "type": "select",
+                            "options": ["Life", "General", "Health"],
+                            "required": true
+                        },
+                        {
+                            "name": "premium_amount",
+                            "label": "Premium Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "Claim": {
+                    "label": "Claim",
+                    "fields": [
+                        {
+                            "name": "claim_id",
+                            "label": "Claim ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "policy_id",
+                            "label": "Policy",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "claim_amount",
+                            "label": "Claim Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "claim_date",
+                            "label": "Date of Claim",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Submitted", "In Review", "Approved", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "RiskAndComplianceManagement",
+            "name": "Risk & Compliance Management",
+            "entities": {
+                "KYCDocument": {
+                    "label": "KYC Document",
+                    "fields": [
+                        {
+                            "name": "kyc_id",
+                            "label": "KYC ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "client_id",
+                            "label": "Client",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "document_type",
+                            "label": "Document Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "document_file",
+                            "label": "Document File",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "verification_status",
+                            "label": "Verification Status",
+                            "type": "select",
+                            "options": ["Pending", "Verified", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                },
+                "AuditLog": {
+                    "label": "Audit Log",
+                    "fields": [
+                        {
+                            "name": "log_id",
+                            "label": "Log ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "user",
+                            "label": "User",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "action",
+                            "label": "Action",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "timestamp",
+                            "label": "Timestamp",
+                            "type": "datetime",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HumanResourceAndPayroll",
+            "name": "Human Resource & Payroll",
+            "entities": {
+                "Employee": {
+                    "label": "Employee",
+                    "fields": [
+                        {
+                            "name": "employee_id",
+                            "label": "Employee ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "department",
+                            "label": "Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "role",
+                            "label": "Role",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "ExpenseClaim": {
+                    "label": "Expense Claim",
+                    "fields": [
+                        {
+                            "name": "claim_id",
+                            "label": "Claim ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "amount",
+                            "label": "Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Submitted", "Approved", "Paid", "Rejected"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "DocumentManagement",
+            "name": "Document Management",
+            "entities": {
+                "ClientDocument": {
+                    "label": "Client Document",
+                    "fields": [
+                        {
+                            "name": "document_id",
+                            "label": "Document ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "client_id",
+                            "label": "Client",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "document_title",
+                            "label": "Title",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "document_file",
+                            "label": "File",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "upload_date",
+                            "label": "Upload Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

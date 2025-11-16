@@ -1,0 +1,1067 @@
+{
+    "domains": [
+        {
+            "id": "ProjectManagement",
+            "name": "Project Management",
+            "entities": {
+                "Project": {
+                    "label": "Project",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Project ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project_name",
+                            "label": "Project Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "project_manager",
+                            "label": "Project Manager",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "planned_start_date",
+                            "label": "Planned Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "planned_end_date",
+                            "label": "Planned End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_start_date",
+                            "label": "Actual Start Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "actual_end_date",
+                            "label": "Actual End Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Planned", "In Progress", "Completed", "On Hold", "Cancelled"],
+                            "required": true
+                        },
+                        {
+                            "name": "budget",
+                            "label": "Budget",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "cost_to_date",
+                            "label": "Cost to Date",
+                            "type": "number",
+                            "read_only": true
+                        },
+                        {
+                            "name": "location",
+                            "label": "Location",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "contract_value",
+                            "label": "Contract Value",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "risk_level",
+                            "label": "Risk Level",
+                            "type": "select",
+                            "options": ["Low", "Medium", "High"],
+                            "required": false
+                        }
+                    ]
+                },
+                "Task": {
+                    "label": "Task / Activity",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Task ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "subject",
+                            "label": "Subject",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_start_date",
+                            "label": "Actual Start Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "actual_end_date",
+                            "label": "Actual End Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Open", "In Progress", "Completed", "Pending Review"],
+                            "required": true
+                        },
+                        {
+                            "name": "assigned_to",
+                            "label": "Assigned To",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "percent_complete",
+                            "label": "Percent Complete",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "Timesheet": {
+                    "label": "Timesheet",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Timesheet ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee",
+                            "label": "Employee",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "task",
+                            "label": "Task",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "work_date",
+                            "label": "Work Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "hours",
+                            "label": "Hours",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ProcurementAndSupplierManagement",
+            "name": "Procurement and Supplier Management",
+            "entities": {
+                "Supplier": {
+                    "label": "Supplier",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Supplier ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "supplier_group",
+                            "label": "Supplier Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_person",
+                            "label": "Contact Person",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "country",
+                            "label": "Country",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "rating",
+                            "label": "Rating",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "lead_time_days",
+                            "label": "Lead Time (Days)",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "PurchaseOrder": {
+                    "label": "Purchase Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Purchase Order ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "supplier",
+                            "label": "Supplier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Transaction Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "expected_delivery_date",
+                            "label": "Expected Delivery Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "Approved", "Partially Received", "Completed", "Cancelled"],
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "PurchaseReceipt": {
+                    "label": "Purchase Receipt",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Receipt ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "purchase_order",
+                            "label": "Purchase Order",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "received_qty",
+                            "label": "Received Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "receipt_date",
+                            "label": "Receipt Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InventoryAndMaterialsManagement",
+            "name": "Inventory and Materials Management",
+            "entities": {
+                "Item": {
+                    "label": "Item",
+                    "fields": [
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true,
+                            "read_only": true
+                        },
+                        {
+                            "name": "item_name",
+                            "label": "Item Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "item_group",
+                            "label": "Item Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "stock_uom",
+                            "label": "Stock UOM",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "has_batch_no",
+                            "label": "Has Batch No",
+                            "type": "checkbox",
+                            "required": false
+                        },
+                        {
+                            "name": "has_serial_no",
+                            "label": "Has Serial No",
+                            "type": "checkbox",
+                            "required": false
+                        },
+                        {
+                            "name": "reorder_level",
+                            "label": "Reorder Level",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                },
+                "Warehouse": {
+                    "label": "Warehouse",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Warehouse Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "warehouse_type",
+                            "label": "Warehouse Type",
+                            "type": "select",
+                            "options": ["Raw Materials", "Finished Goods", "WIP", "Scrap"],
+                            "required": true
+                        },
+                        {
+                            "name": "location",
+                            "label": "Location",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "capacity",
+                            "label": "Capacity",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "is_active",
+                            "label": "Is Active",
+                            "type": "checkbox",
+                            "required": true
+                        }
+                    ]
+                },
+                "StockEntry": {
+                    "label": "Stock Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Stock Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "purpose",
+                            "label": "Purpose",
+                            "type": "select",
+                            "options": ["Material Receipt", "Material Issue", "Stock Transfer"],
+                            "required": true
+                        },
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "qty",
+                            "label": "Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "source_warehouse",
+                            "label": "Source Warehouse",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "target_warehouse",
+                            "label": "Target Warehouse",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "EngineeringAndDesignManagement",
+            "name": "Engineering and Design Management",
+            "entities": {
+                "DesignDocument": {
+                    "label": "Design Document / Drawing",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Document ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "document_type",
+                            "label": "Document Type",
+                            "type": "select",
+                            "options": ["Drawing", "Specification", "3D Model", "Calculation Sheet"],
+                            "required": true
+                        },
+                        {
+                            "name": "revision",
+                            "label": "Revision",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "issue_date",
+                            "label": "Issue Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Issued for Review", "Approved", "Superseded"],
+                            "required": true
+                        },
+                        {
+                            "name": "linked_documents",
+                            "label": "Linked Documents",
+                            "type": "table",
+                            "required": false
+                        }
+                    ]
+                },
+                "EngineeringChangeRequest": {
+                    "label": "Engineering Change Request (ECR)",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "ECR ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "submitted_by",
+                            "label": "Submitted By",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "submission_date",
+                            "label": "Submission Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Pending", "Approved", "Rejected", "Implemented"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ConstructionManagement",
+            "name": "Construction Management",
+            "entities": {
+                "ConstructionActivity": {
+                    "label": "Construction Activity",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Activity ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "scheduled_start_date",
+                            "label": "Scheduled Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "scheduled_end_date",
+                            "label": "Scheduled End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_start_date",
+                            "label": "Actual Start Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "actual_end_date",
+                            "label": "Actual End Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Not Started", "In Progress", "Completed"],
+                            "required": true
+                        }
+                    ]
+                },
+                "EquipmentUsage": {
+                    "label": "Equipment Usage",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Usage Record ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "equipment",
+                            "label": "Equipment",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "usage_start_date",
+                            "label": "Usage Start Date",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "usage_end_date",
+                            "label": "Usage End Date",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "hours_used",
+                            "label": "Hours Used",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "QualityAndComplianceManagement",
+            "name": "Quality and Compliance Management",
+            "entities": {
+                "QualityInspection": {
+                    "label": "Quality Inspection",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Inspection ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "reference_type",
+                            "label": "Reference Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "reference_name",
+                            "label": "Reference Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "inspection_date",
+                            "label": "Inspection Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "inspected_by",
+                            "label": "Inspected By",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "result",
+                            "label": "Result",
+                            "type": "select",
+                            "options": ["Pass", "Fail", "Conditional"],
+                            "required": true
+                        },
+                        {
+                            "name": "remarks",
+                            "label": "Remarks",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "ComplianceRecord": {
+                    "label": "Compliance Record",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Compliance Record ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "regulation",
+                            "label": "Regulation/Permit",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Compliant", "Non-Compliant", "In Review"],
+                            "required": true
+                        },
+                        {
+                            "name": "compliance_date",
+                            "label": "Compliance Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HSE",
+            "name": "Health, Safety, and Environment (HSE)",
+            "entities": {
+                "IncidentReport": {
+                    "label": "Incident Report",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Incident Report ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "date",
+                            "label": "Date of Incident",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": true
+                        },
+                        {
+                            "name": "severity",
+                            "label": "Severity",
+                            "type": "select",
+                            "options": ["Low", "Medium", "High", "Critical"],
+                            "required": true
+                        },
+                        {
+                            "name": "corrective_action",
+                            "label": "Corrective Action",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ContractAndSubcontractManagement",
+            "name": "Contract and Subcontract Management",
+            "entities": {
+                "Contract": {
+                    "label": "Contract",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Contract ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contractor",
+                            "label": "Contractor/Vendor",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contract_value",
+                            "label": "Contract Value",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "start_date",
+                            "label": "Start Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "end_date",
+                            "label": "End Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Active", "Completed", "Terminated"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Subcontractor": {
+                    "label": "Subcontractor",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Subcontractor ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "company",
+                            "label": "Company",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_person",
+                            "label": "Contact Person",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "contract",
+                            "label": "Associated Contract",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "FinancialManagement",
+            "name": "Financial Management (Accounting and Cost Control)",
+            "entities": {
+                "JournalEntry": {
+                    "label": "Journal Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "voucher_type",
+                            "label": "Voucher Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "accounts",
+                            "label": "Accounts",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_debit",
+                            "label": "Total Debit",
+                            "type": "number",
+                            "read_only": true
+                        },
+                        {
+                            "name": "total_credit",
+                            "label": "Total Credit",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                },
+                "CostCenter": {
+                    "label": "Cost Center",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Cost Center ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "project",
+                            "label": "Project",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "allocated_budget",
+                            "label": "Allocated Budget",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_cost",
+                            "label": "Actual Cost",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "HumanResourceManagement",
+            "name": "Human Resource Management",
+            "entities": {
+                "Employee": {
+                    "label": "Employee",
+                    "fields": [
+                        {
+                            "name": "employee_id",
+                            "label": "Employee ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "name",
+                            "label": "Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "department",
+                            "label": "Department",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "designation",
+                            "label": "Designation",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "date_of_joining",
+                            "label": "Date of Joining",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Active", "On Leave", "Terminated"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Attendance": {
+                    "label": "Attendance",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Attendance Record ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "employee_id",
+                            "label": "Employee ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "attendance_date",
+                            "label": "Attendance Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "in_time",
+                            "label": "In Time",
+                            "type": "datetime",
+                            "required": false
+                        },
+                        {
+                            "name": "out_time",
+                            "label": "Out Time",
+                            "type": "datetime",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Present", "Absent", "Leave"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

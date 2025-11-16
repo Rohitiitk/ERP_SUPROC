@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Smart ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+        .industry-block {
+            transition: all 0.2s ease-in-out;
+        }
+        .industry-block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #3b82f6; /* Blue-500 */
+        }
+        #config-submit-btn:disabled {
+            background-color: #6B7280;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="/" class="text-2xl font-bold" style="color: #0C2540;">Smart ERP</a>
+            </div>
+            <div>
+                <button id="launch-workspace-btn"
+                   class="text-white font-bold py-3 px-8 rounded-full text-lg transition-transform transform hover:scale-105"
+                   style="background-color: #0C2540;">
+                    Launch Workspace
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="text-white" style="background-color: #0C2540;">
+            <div class="container mx-auto px-6 py-24 text-center">
+                <h1 class="text-5xl font-extrabold leading-tight mb-4">The Infinitely Customizable ERP Platform</h1>
+                <p class="text-lg text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Stop fitting your business into a rigid system. Build the exact ERP you need with our flexible, user-friendly platform with the help of Ai to guide you through everything, and make customizations for you based on your preferences.
+                </p>
+                <button id="get-started-btn" class="bg-white text-[#0C2540] font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-transform transform hover:scale-105 text-lg">
+                    Get Started &rarr;
+                </button>
+            </div>
+        </section>
+
+        <section class="bg-white py-20">
+             <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-800">Core Features</h2>
+                    <p class="text-gray-600 mt-2">Everything you need to build a powerful, bespoke system.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center max-w-4xl mx-auto">
+                    <div class="p-8 border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-[#0C2540] mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Total Customization</h3>
+                        <p class="text-gray-600">Create, modify, or delete any business domain or entity.</p>
+                    </div>
+                    <div class="p-8 border border-gray-200 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-[#0C2540] mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7v4c0 2.21 3.582 4 8 4s8-1.79 8-4V7" /></svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Centralized Supabase DB</h3>
+                        <p class="text-gray-600">Your custom entities automatically become secure tables in your Supabase project.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-white" style="background-color: #0C2540;">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; Suproc 2024 - 2025 All rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- Modal 1: Configuration -->
+    <div id="config-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl p-8 w-full max-w-lg shadow-2xl relative transform transition-all" role="dialog">
+            <div class="text-center border-b pb-4 mb-6">
+                <h3 class="text-2xl font-bold">Configure Your Workspace</h3>
+                <p class="text-gray-500 mt-1">Please provide your Supabase project details to continue.</p>
+            </div>
+            <button id="config-modal-close-btn" class="absolute top-4 right-4 text-3xl text-gray-400 hover:text-gray-700">&times;</button>
+            
+            <form id="config-form" class="space-y-4">
+                <div>
+                    <label for="supabase-url" class="block text-sm font-medium text-gray-700">Supabase Project URL</label>
+                    <input type="text" id="supabase-url" name="supabase_url" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="supabase-db-url" class="block text-sm font-medium text-gray-700">Supabase DB URL (Session Pooler)</label>
+                    <input type="text" id="supabase-db-url" name="supabase_db_url" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="supabase-key" class="block text-sm font-medium text-gray-700">Supabase Service Role Key</label>
+                    <input type="password" id="supabase-key" name="supabase_key" required class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="text-sm text-gray-500">
+                    <span>Don't know how to get these? </span>
+                    <a href="/static/instructions.html" target="_blank" class="font-medium text-blue-600 hover:underline">Follow the instructions here.</a>
+                </div>
+                <div id="config-error" class="hidden text-red-600 text-sm p-3 bg-red-50 rounded-md"></div>
+                <div class="pt-4">
+                    <button type="submit" id="config-submit-btn" class="w-full text-white font-bold py-3 px-8 rounded-full text-lg transition-colors" style="background-color: #0C2540;">
+                        Save & Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 2: Industry Selection -->
+    <div id="industry-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl p-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative transform transition-all" role="dialog">
+            <div class="text-center border-b pb-4 mb-6">
+                <h3 class="text-2xl font-bold">Select Your Industry</h3>
+                <p class="text-gray-500 mt-1">Choose an industry to get started with a pre-configured template.</p>
+            </div>
+            <button id="industry-modal-close-btn" class="absolute top-4 right-4 text-3xl text-gray-400 hover:text-gray-700">&times;</button>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <a href="/workspace?industry=manufacturing" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m-1 4h1m5-4h1m-1-4h1m-1 4h1m-1 4h1"></path></svg>
+                    <span class="font-semibold text-sm">Manufacturing</span>
+                </a>
+                <a href="/workspace?industry=trading" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="font-semibold text-sm">Trading & Distribution</span>
+                </a>
+                <a href="/workspace?industry=retail" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="font-semibold text-sm">Retail</span>
+                </a>
+                <a href="/workspace?industry=epc" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" /></svg>
+                    <span class="font-semibold text-sm">Engineering (EPC)</span>
+                </a>
+                 <a href="/workspace?industry=ecommerce" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span class="font-semibold text-sm">E-commerce</span>
+                </a>
+                <a href="/workspace?industry=education" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <span class="font-semibold text-sm">Education</span>
+                </a>
+                <a href="/workspace?industry=healthcare" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    <span class="font-semibold text-sm">Healthcare</span>
+                </a>
+                <a href="/workspace?industry=services" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="font-semibold text-sm">Services</span>
+                </a>
+                <a href="/workspace?industry=finance" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    <span class="font-semibold text-sm">Finance</span>
+                </a>
+                <a href="/workspace?industry=nonprofit" class="industry-block text-center p-4 border rounded-lg">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+                    <span class="font-semibold text-sm">Non-Profit</span>
+                </a>
+            </div>
+
+            <div class="flex items-center my-6">
+                <div class="flex-grow border-t border-gray-200"></div>
+                <span class="flex-shrink mx-4 text-gray-500 font-medium">OR</span>
+                <div class="flex-grow border-t border-gray-200"></div>
+            </div>
+
+            <div class="flex justify-center">
+                <a href="/workspace?industry=custom" class="industry-block text-center p-4 border rounded-lg w-full md:w-1/4">
+                    <svg class="w-10 h-10 mx-auto mb-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="font-semibold text-sm">Self-customizable</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const industryModal = document.getElementById('industry-modal');
+            const configModal = document.getElementById('config-modal');
+
+            const launchBtn = document.getElementById('launch-workspace-btn');
+            const startBtn = document.getElementById('get-started-btn');
+            
+            const industryCloseBtn = document.getElementById('industry-modal-close-btn');
+            const configCloseBtn = document.getElementById('config-modal-close-btn');
+
+            const configForm = document.getElementById('config-form');
+            const configError = document.getElementById('config-error');
+            const configSubmitBtn = document.getElementById('config-submit-btn');
+
+            const openConfigModal = () => configModal.classList.remove('hidden');
+            const closeConfigModal = () => configModal.classList.add('hidden');
+            const openIndustryModal = () => industryModal.classList.remove('hidden');
+            const closeIndustryModal = () => industryModal.classList.add('hidden');
+
+            launchBtn.addEventListener('click', openConfigModal);
+            startBtn.addEventListener('click', openConfigModal);
+
+            industryCloseBtn.addEventListener('click', closeIndustryModal);
+            configCloseBtn.addEventListener('click', closeConfigModal);
+
+            configModal.addEventListener('click', (event) => {
+                if (event.target === configModal) closeConfigModal();
+            });
+            industryModal.addEventListener('click', (event) => {
+                if (event.target === industryModal) closeIndustryModal();
+            });
+
+            configForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                configError.classList.add('hidden');
+                configSubmitBtn.disabled = true;
+                configSubmitBtn.textContent = 'Saving...';
+
+                const formData = new FormData(configForm);
+                const data = {
+                    supabase_url: formData.get('supabase_url'),
+                    supabase_db_url: formData.get('supabase_db_url'),
+                    supabase_key: formData.get('supabase_key')
+                };
+
+                try {
+                    const response = await fetch('/api/configure', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        closeConfigModal();
+                        openIndustryModal();
+                    } else {
+                        configError.textContent = result.error || 'An unknown error occurred.';
+                        configError.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    configError.textContent = 'Failed to connect to the server. Please try again.';
+                    configError.classList.remove('hidden');
+                } finally {
+                    configSubmitBtn.disabled = false;
+                    configSubmitBtn.textContent = 'Save & Continue';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

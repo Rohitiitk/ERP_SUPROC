@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Usage Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base Styles & Theme --- */
+        :root {
+            --dark-blue: #0C2540;
+            --light-blue: #F7FAFF;
+            --accent-blue: #eef2ff;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--light-blue);
+            color: var(--text-dark);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Layout & Header --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 0 0 2rem 2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.75rem;
+        }
+
+        /* --- Accordion for Interactive Sections --- */
+        .accordion-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            cursor: pointer;
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .accordion-header:hover {
+            color: var(--dark-blue);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1rem;
+        }
+
+        .accordion-content.active {
+            padding: 0.5rem 1rem 1.5rem 1rem;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content h4 {
+            font-weight: 600;
+            color: var(--dark-blue);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Do's and Don'ts Cards --- */
+        .cards-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--light-blue);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .card-title svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .card.do .card-title { color: #16a34a; } /* Green */
+        .card.dont .card-title { color: #dc2626; } /* Red */
+
+        .card ul {
+            padding-left: 1.25rem;
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Code Blocks & Highlighting --- */
+        code {
+            background-color: var(--accent-blue);
+            color: var(--dark-blue);
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 0.9em;
+            border-radius: 3px;
+            font-family: 'Sora', monospace;
+            display: block;
+            padding: 1em;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>AI Assistant Guide</h1>
+        <p>Your guide to effectively using the AI Assistant to manage your ERP data.</p>
+    </div>
+
+    <div class="container">
+        <!-- How to Prompt Section -->
+        <div class="section">
+            <h2 class="section-title">How to Prompt the Assistant</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Creating New Records</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>To create a new item, state your intent clearly and provide all the required information for that record. The more specific you are, the better.</p>
+                        <p><strong>Example:</strong></p>
+                        <code>I need to create a work order to produce 200 units of the 'Industrial Power Supply'. Use BOM number BOM-IPS-004 and send the items to the 'Main Finished Goods' warehouse. Set the status to 'Planned', with a start date of 11-08-2025 and an end date of 22-08-2025.</code>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Updating Existing Records</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>To update a record, you must first identify it using a unique piece of information, like a Work Order number or an item name. Then, state what you want to change.</p>
+                        <p><strong>Example:</strong></p>
+                        <code>Update the status for the 'Industrial Power Supply' work order to 'In Progress' and set the actual start date to today.</code>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Deleting Records</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Clearly state your intent to delete and identify the specific record you wish to remove. Deletions are permanent.</p>
+                        <p><strong>Example:</strong></p>
+                        <code>Please delete work order WO-2025-001 from the system.</code>
+                    </div>
+                </div>
+                
+                <!-- NEW SECTION -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Industry-Specific Examples</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <h4>E-commerce</h4>
+                        <code>Add a new product: 'Wireless Headphones', SKU 'HP-NC-2025', price is 149.99, and we have 250 in stock.</code>
+                        <code>Update the stock for SKU 'HP-NC-2025' to 235.</code>
+                        
+                        <h4>Education</h4>
+                        <code>Enroll student 'Jane Doe', ID 'S-JD-2025', into the 'Introduction to Python' course, section 'Fall-A'.</code>
+                        <code>Update the grade for student 'S-JD-2025' in 'Introduction to Python' to 'A-'.</code>
+
+                        <h4>Finance</h4>
+                        <code>Log a new transaction: a debit of 500.00 from account 'Main Checking' to 'Office Supplies'.</code>
+                        <code>Reconcile the transaction for 'Office Supplies' on August 1st.</code>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Do's and Don'ts Section -->
+        <div class="section">
+            <h2 class="section-title">Do's and Don'ts</h2>
+            <div class="cards-container">
+                <div class="card do">
+                    <h3 class="card-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Do
+                    </h3>
+                    <ul>
+                        <li><strong>Be Specific:</strong> Provide all necessary details in one go.</li>
+                        <li><strong>Use Natural Language:</strong> Speak or type as you would to a person.</li>
+                        <li><strong>Refer to Records:</strong> Use names or IDs (like "Work Order WO-2025-001") to specify which item to update or delete.</li>
+                        <li><strong>Check Your Spelling:</strong> Ensure entity and field names are spelled correctly.</li>
+                    </ul>
+                </div>
+                <div class="card dont">
+                    <h3 class="card-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Don't
+                    </h3>
+                    <ul>
+                        <li><strong>Be Vague:</strong> Avoid commands like "update the thing" or "fix it."</li>
+                        <li><strong>Ask to Change the UI:</strong> The AI cannot add buttons, change colors, or modify the application's design.</li>
+                        <li><strong>Combine Unrelated Tasks:</strong> Focus on one primary action (create, update, or delete) per command.</li>
+                        <li><strong>Assume It Remembers:</strong> Treat each new command as a fresh start. The AI has a very short-term memory.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Limitations Section -->
+        <div class="section">
+            <h2 class="section-title">Understanding the AI's Limitations</h2>
+            <p>The AI Assistant is a powerful tool, but it's important to understand its boundaries to use it effectively.</p>
+            <ul>
+                <li><strong>It's a Language Translator:</strong> The AI's main job is to translate your natural language into a structured command that the database understands. It doesn't "think" or "reason" like a human.</li>
+                <li><strong>It Can't See Your Screen:</strong> The AI has no knowledge of the user interface. It only knows about the entities and fields defined in the system's configuration.</li>
+                <li><strong>It Can Misunderstand Ambiguity:</strong> If a command is unclear (e.g., "change the start date" without specifying *which* start date), it may ask for clarification or make an incorrect guess.</li>
+                <li><strong>It Follows Its Rules:</strong> The AI can only perform the actions it was programmed for: creating, updating, deleting, and listing records. It cannot generate complex analytical reports beyond simple summaries or answer general knowledge questions.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // --- JavaScript for Accordion ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                           otherItem.classList.remove('active');
+                           otherItem.querySelector('.accordion-content').style.maxHeight = '0px';
+                           otherItem.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                        }
+                    });
+
+                    // Toggle the clicked item
+                    if (!isActive) {
+                        item.classList.add('active');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.style.transform = 'rotate(45deg)';
+                    } else {
+                        item.classList.remove('active');
+                        content.style.maxHeight = '0px';
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

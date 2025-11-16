@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Credentials Checklist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .step-connector {
+            position: absolute;
+            top: 2.5rem;
+            bottom: -2rem;
+            left: 1.125rem;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 1;
+        }
+        .step-item:last-child .step-connector {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto max-w-4xl px-4 py-12 md:py-20">
+
+        <header class="text-center mb-12">
+            <p class="text-sm uppercase tracking-[0.35em] text-emerald-500">Suproc ERP Workspace</p>
+            <h1 class="mt-3 text-4xl md:text-5xl font-bold text-slate-900">Supabase Credentials Checklist</h1>
+            <p class="mt-4 text-lg text-slate-600">
+                Follow these verified steps to collect the exact Supabase values required by Suproc:
+                <span class="font-medium text-slate-800">Project URL</span>,
+                <span class="font-medium text-slate-800">Session Pooler connection string</span>,
+                and the <span class="font-medium text-slate-800">Service Role key</span>.
+            </p>
+        </header>
+
+        <main class="space-y-8">
+
+            <section id="step-1" class="step-item relative">
+                <div class="step-connector"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">1</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Sign in and open (or create) your Supabase project</h2>
+                            <p class="mb-4 text-slate-600">
+                                All required credentials are stored inside the Supabase dashboard for a specific project.
+                                You can use an existing project or create a fresh one for Suproc.
+                            </p>
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-emerald-500">✓</span>
+                                    <span>Go to <a href="https://supabase.com/dashboard/projects" target="_blank" class="text-emerald-600 font-medium hover:underline">supabase.com/dashboard/projects</a> and sign in with your GitHub or email login.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-emerald-500">✓</span>
+                                    <span>If you are spinning up a new backend, click <strong>Create new project</strong>, choose your organisation, pick a project name, region, and plan, then set a <strong>database password</strong>. This password is needed later for the Session Pooler connection string—store it securely.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-emerald-500">✓</span>
+                                    <span>If the project already exists, open it from the project list so the left-hand navigation is visible.</span>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-2" class="step-item relative">
+                <div class="step-connector"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">2</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Confirm your database password</h2>
+                            <p class="mb-4 text-slate-600">
+                                The Session Pooler connection string includes the Postgres password you set when the project was created.
+                                If you cannot recall it, Supabase allows you to reset it.
+                            </p>
+                            <ol class="space-y-3 list-decimal list-inside text-slate-700">
+                                <li>In the left navigation, click <strong>Settings → Database</strong>.</li>
+                                <li>Under the <strong>General</strong> tab, locate the <strong>Database password</strong> panel.</li>
+                                <li>If you forgot the password, use the <strong>Reset database password</strong> action and store the new value.
+                                    Resetting will require you to update any existing applications using the old password.</li>
+                            </ol>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-3" class="step-item relative">
+                <div class="step-connector"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">3</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Copy the Supabase Project URL</h2>
+                            <p class="mb-4 text-slate-600">
+                                This URL identifies your Supabase instance and is required by Suproc to reach the REST API.
+                            </p>
+                            <ol class="space-y-3 list-decimal list-inside text-slate-700 mb-4">
+                                <li>Go to <strong>Settings → API</strong>.</li>
+                                <li>At the top of the page, under <strong>Project Configuration</strong>, copy the value labelled <strong>Project URL</strong>.</li>
+                                <li>The URL typically looks like <code>https://<span class="text-emerald-600">your-project-ref</span>.supabase.co</code>.</li>
+                            </ol>
+                            <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                                <p class="text-sm text-slate-500 uppercase tracking-[0.2em] mb-2">Example format</p>
+                                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                                    <code class="text-sm text-slate-800 bg-white px-3 py-2 rounded-md border border-slate-200 flex-1">https://YOUR-PROJECT-REF.supabase.co</code>
+                                    <button type="button" class="inline-flex items-center justify-center rounded-md bg-slate-200 text-slate-700 px-3 py-2 text-sm font-medium hover:bg-slate-300 transition" onclick="copyToClipboard(this, 'https://YOUR-PROJECT-REF.supabase.co')">
+                                        Copy sample
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-4" class="step-item relative">
+                <div class="step-connector"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">4</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Copy the Service Role key</h2>
+                            <p class="mb-4 text-slate-600">
+                                Suproc needs a key that can perform administrative actions on your Supabase tables.
+                                The service role key provides this access scope.
+                            </p>
+                            <ol class="space-y-3 list-decimal list-inside text-slate-700 mb-4">
+                                <li>Stay on <strong>Settings → API</strong>.</li>
+                                <li>Scroll to the <strong>Project API keys</strong> section.</li>
+                                <li>Click <strong>Reveal</strong> next to the <strong>service_role</strong> key and copy it.</li>
+                            </ol>
+                            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                                <p class="text-sm text-amber-700 font-medium">Security reminder:</p>
+                                <p class="mt-1 text-sm text-amber-700">
+                                    Treat the service role key like a password. Do not embed it in client-side code or share it outside your team.
+                                    Suproc stores it encrypted for your workspace and uses it only for server-side automation.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-5" class="step-item relative">
+                <div class="step-connector"></div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">5</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Copy the <span class="whitespace-nowrap">Session Pooler</span> connection string</h2>
+                            <p class="mb-4 text-slate-600">
+                                Suproc connects to your Postgres database via Supabase&rsquo;s connection pooler so it works reliably from environments without IPv6.
+                            </p>
+                            <ol class="space-y-3 list-decimal list-inside text-slate-700 mb-4">
+                                <li>Navigate to <strong>Settings → Database → Connection pooling</strong>.</li>
+                                <li>Select the <strong>Session</strong> tab (not Transaction).</li>
+                                <li>Copy the full connection string. It will resemble:
+                                    <code class="block mt-2 text-sm text-emerald-600 bg-emerald-50 px-3 py-2 rounded-md border border-emerald-100">postgresql://postgres:<span class="text-emerald-800 font-semibold">YOUR-DB-PASSWORD</span>@<span class="text-emerald-800 font-semibold">YOUR-PROJECT-REF</span>.pooler.supabase.com:6543/postgres</code>
+                                </li>
+                            </ol>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                                <p class="text-sm text-yellow-700">
+                                    Replace <code>YOUR-DB-PASSWORD</code> with the password you verified in Step&nbsp;2 before pasting into Suproc.
+                                    Depending on your region, the host may end with <code>.supabase.net</code> or <code>.supabase.com</code>—copy exactly what Supabase shows.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="step-6" class="step-item relative">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 z-10">
+                        <div class="w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center">
+                            <span class="text-lg font-semibold text-emerald-500">6</span>
+                        </div>
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <article class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-semibold mb-3 text-slate-900">Enter the values inside Suproc</h2>
+                            <p class="mb-4 text-slate-600">
+                                With the Supabase credentials on hand, complete the Suproc ERP setup modal.
+                            </p>
+                            <ol class="space-y-3 list-decimal list-inside text-slate-700 mb-4">
+                                <li>In Suproc, click <strong>Start free workspace</strong> (or open the configuration modal from the ERP landing page).</li>
+                                <li>Populate the fields with the values you collected:
+                                    <ul class="mt-3 space-y-2 text-slate-600 list-disc list-inside">
+                                        <li><strong>Supabase Project URL</strong> → paste the Project URL from Step&nbsp;3.</li>
+                                        <li><strong>Supabase DB URL (Session Pooler)</strong> → paste the connection string from Step&nbsp;5, with your password substituted.</li>
+                                        <li><strong>Supabase Service Role Key</strong> → paste the service_role key from Step&nbsp;4.</li>
+                                    </ul>
+                                </li>
+                                <li>Click <strong>Save &amp; Continue</strong>. Suproc will encrypt the credentials, run the initial schema setup, and confirm when the workspace is ready.</li>
+                            </ol>
+                            <p class="text-sm text-slate-500">
+                                Keep the key and password in a secure vault. If you rotate them later, revisit this modal to update Suproc.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="mt-16 border-t border-slate-200 pt-8 text-center text-sm text-slate-500">
+            <p>Need help? Reach the Suproc team at <a href="mailto:support@suproc.com" class="text-emerald-600 font-medium hover:underline">support@suproc.com</a>.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function copyToClipboard(buttonElement, textToCopy) {
+            const fallbackCopy = (text) => {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textToCopy).catch(() => fallbackCopy(textToCopy));
+            } else {
+                fallbackCopy(textToCopy);
+            }
+
+            const originalText = buttonElement.textContent;
+            buttonElement.textContent = 'Copied!';
+            buttonElement.classList.add('bg-emerald-500', 'text-white');
+            buttonElement.classList.remove('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+
+            setTimeout(() => {
+                buttonElement.textContent = originalText;
+                buttonElement.classList.remove('bg-emerald-500', 'text-white');
+                buttonElement.classList.add('bg-slate-200', 'text-slate-700', 'hover:bg-slate-300');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

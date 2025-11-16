@@ -1,0 +1,714 @@
+{
+    "domains": [
+        {
+            "id": "PatientManagement",
+            "name": "Patient Management",
+            "entities": {
+                "Patient": {
+                    "label": "Patient",
+                    "fields": [
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "first_name",
+                            "label": "First Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "last_name",
+                            "label": "Last Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "dob",
+                            "label": "Date of Birth",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "gender",
+                            "label": "Gender",
+                            "type": "select",
+                            "options": ["Male", "Female", "Other"],
+                            "required": true
+                        },
+                        {
+                            "name": "blood_type",
+                            "label": "Blood Type",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "contact_number",
+                            "label": "Contact Number",
+                            "type": "tel",
+                            "required": true
+                        },
+                        {
+                            "name": "email",
+                            "label": "Email",
+                            "type": "email",
+                            "required": false
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "PatientEncounter": {
+                    "label": "Patient Encounter",
+                    "fields": [
+                        {
+                            "name": "encounter_id",
+                            "label": "Encounter ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "practitioner_id",
+                            "label": "Practitioner ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "encounter_datetime",
+                            "label": "Encounter Date & Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "symptoms",
+                            "label": "Symptoms",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "PatientHistory": {
+                    "label": "Patient History",
+                    "fields": [
+                        {
+                            "name": "history_id",
+                            "label": "History ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "medical_condition",
+                            "label": "Medical Condition",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "notes",
+                            "label": "Notes",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AppointmentsAndScheduling",
+            "name": "Appointments & Scheduling",
+            "entities": {
+                "Appointment": {
+                    "label": "Appointment",
+                    "fields": [
+                        {
+                            "name": "appointment_id",
+                            "label": "Appointment ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "practitioner_id",
+                            "label": "Practitioner ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "appointment_datetime",
+                            "label": "Appointment Date & Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Scheduled", "Completed", "Cancelled", "No Show"],
+                            "required": true
+                        }
+                    ]
+                },
+                "PractitionerSchedule": {
+                    "label": "Practitioner Schedule",
+                    "fields": [
+                        {
+                            "name": "schedule_id",
+                            "label": "Schedule ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "practitioner_id",
+                            "label": "Practitioner ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "day_of_week",
+                            "label": "Day of Week",
+                            "type": "select",
+                            "options": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                            "required": true
+                        },
+                        {
+                            "name": "start_time",
+                            "label": "Start Time",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "end_time",
+                            "label": "End Time",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "ClinicalManagement",
+            "name": "Clinical Management",
+            "entities": {
+                "Practitioner": {
+                    "label": "Practitioner (Doctor)",
+                    "fields": [
+                        {
+                            "name": "practitioner_id",
+                            "label": "Practitioner ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "full_name",
+                            "label": "Full Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "specialty",
+                            "label": "Specialty",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "contact_number",
+                            "label": "Contact Number",
+                            "type": "tel",
+                            "required": true
+                        }
+                    ]
+                },
+                "ClinicalProcedure": {
+                    "label": "Clinical Procedure",
+                    "fields": [
+                        {
+                            "name": "procedure_id",
+                            "label": "Procedure ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "procedure_name",
+                            "label": "Procedure Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "cost",
+                            "label": "Cost",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "Diagnosis": {
+                    "label": "Diagnosis",
+                    "fields": [
+                        {
+                            "name": "diagnosis_id",
+                            "label": "Diagnosis ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "encounter_id",
+                            "label": "Encounter ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "medical_code",
+                            "label": "Medical Code (ICD-10)",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "diagnosis_notes",
+                            "label": "Notes",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                },
+                "VitalSigns": {
+                    "label": "Vital Signs",
+                    "fields": [
+                        {
+                            "name": "vitals_id",
+                            "label": "Vitals ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "encounter_id",
+                            "label": "Encounter ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "temperature",
+                            "label": "Temperature (°C)",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "heart_rate",
+                            "label": "Heart Rate (bpm)",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "blood_pressure",
+                            "label": "Blood Pressure (mmHg)",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "respiratory_rate",
+                            "label": "Respiratory Rate (breaths/min)",
+                            "type": "number",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InpatientAndBedManagement",
+            "name": "Inpatient & Bed Management",
+            "entities": {
+                "InpatientRecord": {
+                    "label": "Inpatient Record",
+                    "fields": [
+                        {
+                            "name": "inpatient_id",
+                            "label": "Inpatient ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "admission_datetime",
+                            "label": "Admission Date & Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "discharge_datetime",
+                            "label": "Discharge Date & Time",
+                            "type": "datetime",
+                            "required": false
+                        },
+                        {
+                            "name": "bed_id",
+                            "label": "Bed ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Admitted", "Discharged"],
+                            "required": true
+                        }
+                    ]
+                },
+                "Bed": {
+                    "label": "Ward/Room Management",
+                    "fields": [
+                        {
+                            "name": "bed_id",
+                            "label": "Bed ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "ward_name",
+                            "label": "Ward Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "room_number",
+                            "label": "Room Number",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "bed_type",
+                            "label": "Bed Type",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Available", "Occupied", "Maintenance"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "PharmacyManagement",
+            "name": "Pharmacy Management",
+            "entities": {
+                "Prescription": {
+                    "label": "Prescription",
+                    "fields": [
+                        {
+                            "name": "prescription_id",
+                            "label": "Prescription ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "encounter_id",
+                            "label": "Encounter ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "medications",
+                            "label": "Medications",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "prescription_date",
+                            "label": "Prescription Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "Medication": {
+                    "label": "Medication",
+                    "fields": [
+                        {
+                            "name": "medication_id",
+                            "label": "Medication ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "drug_name",
+                            "label": "Drug Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "strength",
+                            "label": "Strength",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "form",
+                            "label": "Form",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "LaboratoryManagement",
+            "name": "Laboratory Management",
+            "entities": {
+                "LabTest": {
+                    "label": "Lab Test",
+                    "fields": [
+                        {
+                            "name": "test_id",
+                            "label": "Test ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "encounter_id",
+                            "label": "Encounter ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "test_name",
+                            "label": "Test Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "specimen_type",
+                            "label": "Specimen Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Pending", "Sample Collected", "Completed"],
+                            "required": true
+                        }
+                    ]
+                },
+                "TestResult": {
+                    "label": "Test Result",
+                    "fields": [
+                        {
+                            "name": "result_id",
+                            "label": "Result ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "test_id",
+                            "label": "Test ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "result_value",
+                            "label": "Result Value",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "normal_range",
+                            "label": "Normal Range",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "notes",
+                            "label": "Notes",
+                            "type": "textarea",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "BillingAndInvoicing",
+            "name": "Billing & Invoicing",
+            "entities": {
+                "HealthcareServiceInvoice": {
+                    "label": "Healthcare Service Invoice",
+                    "fields": [
+                        {
+                            "name": "invoice_id",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "services",
+                            "label": "Services",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "invoice_date",
+                            "label": "Invoice Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Submitted", "Paid", "Cancelled"],
+                            "required": true
+                        }
+                    ]
+                },
+                "PaymentEntry": {
+                    "label": "Payment Entry",
+                    "fields": [
+                        {
+                            "name": "payment_id",
+                            "label": "Payment ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "invoice_id",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "payment_date",
+                            "label": "Payment Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "amount_paid",
+                            "label": "Amount Paid",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "payment_mode",
+                            "label": "Payment Mode",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InsuranceManagement",
+            "name": "Insurance Management",
+            "entities": {
+                "InsuranceClaim": {
+                    "label": "Insurance Claim",
+                    "fields": [
+                        {
+                            "name": "claim_id",
+                            "label": "Claim ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "invoice_id",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "patient_id",
+                            "label": "Patient ID",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "insurance_company",
+                            "label": "Insurance Company",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "policy_number",
+                            "label": "Policy Number",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "claim_amount",
+                            "label": "Claim Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "submission_date",
+                            "label": "Submission Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Submitted", "Approved", "Rejected", "Paid"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

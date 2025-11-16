@@ -1,0 +1,468 @@
+{
+  "certifications": [
+    {
+      "id": "iso_9001",
+      "name": "ISO 9001",
+      "full_name": "ISO 9001 - Quality Management Systems",
+      "category": "quality_management",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Quality management system standard for organizations to demonstrate ability to consistently provide products and services that meet customer and regulatory requirements",
+      "variations": [
+        "ISO 9001",
+        "ISO9001",
+        "ISO-9001",
+        "ISO 9001:2015",
+        "ISO 9001:2008",
+        "ISO9001:2015"
+      ],
+      "keywords": ["quality management", "QMS", "quality system"],
+      "importance": "high",
+      "common_in_industries": ["manufacturing", "automotive", "electronics", "services"]
+    },
+    {
+      "id": "iso_14001",
+      "name": "ISO 14001",
+      "full_name": "ISO 14001 - Environmental Management Systems",
+      "category": "environmental",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Environmental management system standard for organizations to improve environmental performance",
+      "variations": [
+        "ISO 14001",
+        "ISO14001",
+        "ISO-14001",
+        "ISO 14001:2015",
+        "ISO14001:2015"
+      ],
+      "keywords": ["environmental management", "EMS", "environmental system"],
+      "importance": "high",
+      "common_in_industries": ["manufacturing", "chemical", "energy", "construction"]
+    },
+    {
+      "id": "iso_45001",
+      "name": "ISO 45001",
+      "full_name": "ISO 45001 - Occupational Health and Safety Management Systems",
+      "category": "health_safety",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Occupational health and safety management system standard",
+      "variations": [
+        "ISO 45001",
+        "ISO45001",
+        "ISO-45001",
+        "ISO 45001:2018",
+        "OHSAS 18001"
+      ],
+      "keywords": ["occupational health", "safety management", "OH&S", "OHSMS"],
+      "importance": "high",
+      "common_in_industries": ["construction", "manufacturing", "mining", "oil_gas"]
+    },
+    {
+      "id": "ce_marking",
+      "name": "CE Marking",
+      "full_name": "CE Marking - Conformité Européenne",
+      "category": "product_safety",
+      "scope": "europe",
+      "issuing_body": "European Commission",
+      "description": "Mandatory conformity marking for products sold in European Economic Area",
+      "variations": [
+        "CE",
+        "CE Mark",
+        "CE Marking",
+        "CE Certified",
+        "CE Certification"
+      ],
+      "keywords": ["european conformity", "CE mark", "EU compliance"],
+      "importance": "critical",
+      "common_in_industries": ["electronics", "machinery", "medical_devices", "toys"],
+      "regions": ["EU", "EEA"]
+    },
+    {
+      "id": "fda_approved",
+      "name": "FDA Approved",
+      "full_name": "FDA Approval - US Food and Drug Administration",
+      "category": "regulatory",
+      "scope": "usa",
+      "issuing_body": "US Food and Drug Administration",
+      "description": "US regulatory approval for food, drugs, medical devices, and cosmetics",
+      "variations": [
+        "FDA",
+        "FDA Approved",
+        "FDA Certified",
+        "FDA Registered",
+        "FDA Compliant"
+      ],
+      "keywords": ["FDA", "food safety", "drug approval"],
+      "importance": "critical",
+      "common_in_industries": ["pharmaceuticals", "medical_devices", "food", "cosmetics"],
+      "regions": ["USA"]
+    },
+    {
+      "id": "rohs",
+      "name": "RoHS",
+      "full_name": "RoHS - Restriction of Hazardous Substances",
+      "category": "environmental",
+      "scope": "international",
+      "issuing_body": "European Union",
+      "description": "Restricts use of specific hazardous materials in electrical and electronic products",
+      "variations": [
+        "RoHS",
+        "RoHS Compliant",
+        "RoHS Certified",
+        "RoHS2",
+        "RoHS 2",
+        "RoHS Directive"
+      ],
+      "keywords": ["hazardous substances", "electronics compliance", "lead-free"],
+      "importance": "high",
+      "common_in_industries": ["electronics", "electrical_equipment", "automotive"]
+    },
+    {
+      "id": "reach",
+      "name": "REACH",
+      "full_name": "REACH - Registration, Evaluation, Authorisation and Restriction of Chemicals",
+      "category": "chemical_safety",
+      "scope": "europe",
+      "issuing_body": "European Chemicals Agency",
+      "description": "EU regulation for chemical substances management",
+      "variations": [
+        "REACH",
+        "REACH Compliant",
+        "REACH Certified",
+        "REACH Regulation"
+      ],
+      "keywords": ["chemical safety", "substance regulation", "ECHA"],
+      "importance": "high",
+      "common_in_industries": ["chemical", "manufacturing", "textiles", "electronics"]
+    },
+    {
+      "id": "ul_listed",
+      "name": "UL Listed",
+      "full_name": "UL Listing - Underwriters Laboratories",
+      "category": "product_safety",
+      "scope": "international",
+      "issuing_body": "Underwriters Laboratories",
+      "description": "Product safety certification for electrical products",
+      "variations": [
+        "UL",
+        "UL Listed",
+        "UL Certified",
+        "UL Approved",
+        "Underwriters Laboratories"
+      ],
+      "keywords": ["product safety", "electrical safety", "UL mark"],
+      "importance": "high",
+      "common_in_industries": ["electronics", "electrical_equipment", "appliances"]
+    },
+    {
+      "id": "fcc",
+      "name": "FCC",
+      "full_name": "FCC Certification - Federal Communications Commission",
+      "category": "electromagnetic",
+      "scope": "usa",
+      "issuing_body": "Federal Communications Commission",
+      "description": "US certification for electromagnetic interference compliance",
+      "variations": [
+        "FCC",
+        "FCC Certified",
+        "FCC Compliant",
+        "FCC Approved"
+      ],
+      "keywords": ["electromagnetic compliance", "radio frequency", "EMC"],
+      "importance": "high",
+      "common_in_industries": ["electronics", "telecommunications", "wireless"],
+      "regions": ["USA"]
+    },
+    {
+      "id": "iatf_16949",
+      "name": "IATF 16949",
+      "full_name": "IATF 16949 - Quality Management System for Automotive",
+      "category": "quality_management",
+      "scope": "international",
+      "issuing_body": "International Automotive Task Force",
+      "description": "Quality management standard for automotive industry",
+      "variations": [
+        "IATF 16949",
+        "IATF16949",
+        "IATF-16949",
+        "IATF 16949:2016",
+        "TS 16949"
+      ],
+      "keywords": ["automotive quality", "automotive standard", "IATF"],
+      "importance": "critical",
+      "common_in_industries": ["automotive", "automotive_suppliers"]
+    },
+    {
+      "id": "iso_13485",
+      "name": "ISO 13485",
+      "full_name": "ISO 13485 - Medical Devices Quality Management",
+      "category": "quality_management",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Quality management system for medical devices",
+      "variations": [
+        "ISO 13485",
+        "ISO13485",
+        "ISO-13485",
+        "ISO 13485:2016"
+      ],
+      "keywords": ["medical devices", "healthcare quality", "medical QMS"],
+      "importance": "critical",
+      "common_in_industries": ["medical_devices", "healthcare", "pharmaceuticals"]
+    },
+    {
+      "id": "gmp",
+      "name": "GMP",
+      "full_name": "GMP - Good Manufacturing Practice",
+      "category": "manufacturing_quality",
+      "scope": "international",
+      "issuing_body": "Various (WHO, FDA, EMA)",
+      "description": "Quality assurance for pharmaceutical and food manufacturing",
+      "variations": [
+        "GMP",
+        "cGMP",
+        "Current GMP",
+        "GMP Certified",
+        "Good Manufacturing Practice"
+      ],
+      "keywords": ["manufacturing practice", "pharmaceutical quality", "food safety"],
+      "importance": "critical",
+      "common_in_industries": ["pharmaceuticals", "food", "cosmetics", "medical_devices"]
+    },
+    {
+      "id": "haccp",
+      "name": "HACCP",
+      "full_name": "HACCP - Hazard Analysis and Critical Control Points",
+      "category": "food_safety",
+      "scope": "international",
+      "issuing_body": "Codex Alimentarius Commission",
+      "description": "Food safety management system",
+      "variations": [
+        "HACCP",
+        "HACCP Certified",
+        "HACCP Compliant"
+      ],
+      "keywords": ["food safety", "hazard analysis", "critical control"],
+      "importance": "critical",
+      "common_in_industries": ["food", "food_processing", "catering", "hospitality"]
+    },
+    {
+      "id": "brc",
+      "name": "BRC",
+      "full_name": "BRC Global Standards - British Retail Consortium",
+      "category": "food_safety",
+      "scope": "international",
+      "issuing_body": "British Retail Consortium",
+      "description": "Food safety and quality certification",
+      "variations": [
+        "BRC",
+        "BRC Certified",
+        "BRC Global Standards"
+      ],
+      "keywords": ["food safety", "retail standards", "BRC certification"],
+      "importance": "high",
+      "common_in_industries": ["food", "food_processing", "packaging"]
+    },
+    {
+      "id": "sedex",
+      "name": "SEDEX",
+      "full_name": "SEDEX - Supplier Ethical Data Exchange",
+      "category": "ethical_social",
+      "scope": "international",
+      "issuing_body": "Sedex",
+      "description": "Ethical supply chain management platform",
+      "variations": [
+        "SEDEX",
+        "Sedex Member",
+        "SMETA"
+      ],
+      "keywords": ["ethical sourcing", "supply chain ethics", "social compliance"],
+      "importance": "medium",
+      "common_in_industries": ["manufacturing", "retail", "food", "textiles"]
+    },
+    {
+      "id": "bsci",
+      "name": "BSCI",
+      "full_name": "BSCI - Business Social Compliance Initiative",
+      "category": "ethical_social",
+      "scope": "international",
+      "issuing_body": "amfori",
+      "description": "Supply chain social compliance program",
+      "variations": [
+        "BSCI",
+        "BSCI Certified",
+        "amfori BSCI"
+      ],
+      "keywords": ["social compliance", "ethical trade", "labor standards"],
+      "importance": "medium",
+      "common_in_industries": ["manufacturing", "textiles", "retail"]
+    },
+    {
+      "id": "sa8000",
+      "name": "SA8000",
+      "full_name": "SA8000 - Social Accountability International",
+      "category": "ethical_social",
+      "scope": "international",
+      "issuing_body": "Social Accountability International",
+      "description": "Social accountability standard for decent working conditions",
+      "variations": [
+        "SA8000",
+        "SA 8000",
+        "SA8000 Certified"
+      ],
+      "keywords": ["social accountability", "worker rights", "labor standards"],
+      "importance": "medium",
+      "common_in_industries": ["manufacturing", "textiles", "agriculture"]
+    },
+    {
+      "id": "oeko_tex",
+      "name": "OEKO-TEX",
+      "full_name": "OEKO-TEX Standard 100",
+      "category": "textile_safety",
+      "scope": "international",
+      "issuing_body": "OEKO-TEX Association",
+      "description": "Textile product safety certification",
+      "variations": [
+        "OEKO-TEX",
+        "Oeko-Tex",
+        "OEKO-TEX Standard 100",
+        "Oeko Tex Certified"
+      ],
+      "keywords": ["textile safety", "chemical testing", "fabric certification"],
+      "importance": "high",
+      "common_in_industries": ["textiles", "apparel", "home_furnishings"]
+    },
+    {
+      "id": "iso_27001",
+      "name": "ISO 27001",
+      "full_name": "ISO 27001 - Information Security Management",
+      "category": "information_security",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Information security management system standard",
+      "variations": [
+        "ISO 27001",
+        "ISO27001",
+        "ISO-27001",
+        "ISO 27001:2013",
+        "ISO 27001:2022"
+      ],
+      "keywords": ["information security", "cybersecurity", "ISMS", "data protection"],
+      "importance": "high",
+      "common_in_industries": ["technology", "finance", "healthcare", "telecommunications"]
+    },
+    {
+      "id": "iso_22000",
+      "name": "ISO 22000",
+      "full_name": "ISO 22000 - Food Safety Management",
+      "category": "food_safety",
+      "scope": "international",
+      "issuing_body": "International Organization for Standardization",
+      "description": "Food safety management system standard",
+      "variations": [
+        "ISO 22000",
+        "ISO22000",
+        "ISO-22000",
+        "ISO 22000:2018"
+      ],
+      "keywords": ["food safety", "food chain", "FSMS"],
+      "importance": "critical",
+      "common_in_industries": ["food", "agriculture", "food_processing", "catering"]
+    },
+    {
+      "id": "gb_standards",
+      "name": "GB Standards",
+      "full_name": "GB/T - Chinese National Standards",
+      "category": "national_standard",
+      "scope": "china",
+      "issuing_body": "Standardization Administration of China",
+      "description": "Chinese national standards for products and services",
+      "variations": [
+        "GB",
+        "GB/T",
+        "GB Standard",
+        "Chinese Standard"
+      ],
+      "keywords": ["chinese standard", "national standard", "china compliance"],
+      "importance": "critical",
+      "common_in_industries": ["all"],
+      "regions": ["China"]
+    },
+    {
+      "id": "ccc",
+      "name": "CCC",
+      "full_name": "CCC - China Compulsory Certificate",
+      "category": "product_safety",
+      "scope": "china",
+      "issuing_body": "Certification and Accreditation Administration of China",
+      "description": "Mandatory product certification for Chinese market",
+      "variations": [
+        "CCC",
+        "3C",
+        "CCC Mark",
+        "China Compulsory Certificate"
+      ],
+      "keywords": ["china certification", "compulsory certificate", "3C mark"],
+      "importance": "critical",
+      "common_in_industries": ["electronics", "automotive", "toys", "safety_equipment"],
+      "regions": ["China"]
+    },
+    {
+      "id": "bis",
+      "name": "BIS",
+      "full_name": "BIS - Bureau of Indian Standards",
+      "category": "product_safety",
+      "scope": "india",
+      "issuing_body": "Bureau of Indian Standards",
+      "description": "Indian national standards certification",
+      "variations": [
+        "BIS",
+        "ISI Mark",
+        "BIS Certified",
+        "Indian Standards"
+      ],
+      "keywords": ["indian standards", "BIS certification", "ISI mark"],
+      "importance": "critical",
+      "common_in_industries": ["electronics", "food", "automotive", "textiles"],
+      "regions": ["India"]
+    },
+    {
+      "id": "energy_star",
+      "name": "ENERGY STAR",
+      "full_name": "ENERGY STAR - Energy Efficiency Certification",
+      "category": "environmental",
+      "scope": "international",
+      "issuing_body": "US Environmental Protection Agency",
+      "description": "Energy efficiency certification for products and buildings",
+      "variations": [
+        "ENERGY STAR",
+        "Energy Star",
+        "EnergyStar"
+      ],
+      "keywords": ["energy efficiency", "environmental", "energy saving"],
+      "importance": "medium",
+      "common_in_industries": ["appliances", "electronics", "construction", "HVAC"]
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "last_updated": "2025-01-29",
+    "total_certifications": 25,
+    "categories": [
+      "quality_management",
+      "environmental",
+      "health_safety",
+      "product_safety",
+      "regulatory",
+      "chemical_safety",
+      "electromagnetic",
+      "manufacturing_quality",
+      "food_safety",
+      "ethical_social",
+      "textile_safety",
+      "information_security",
+      "national_standard"
+    ]
+  }
+}

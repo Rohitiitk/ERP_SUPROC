@@ -1,0 +1,876 @@
+{
+    "domains": [
+        {
+            "id": "PointOfSale",
+            "name": "Point of Sale (POS)",
+            "entities": {
+                "POSTransaction": {
+                    "label": "POS Transaction",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "POS Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Transaction Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "payment_mode",
+                            "label": "Payment Mode",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "cashier",
+                            "label": "Cashier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Paid", "Unpaid", "Draft"],
+                            "required": true
+                        }
+                    ]
+                },
+                "POSProfile": {
+                    "label": "POS Profile",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Profile ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "store",
+                            "label": "Store",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "user",
+                            "label": "User",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "allowed_payment_modes",
+                            "label": "Allowed Payment Modes",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "write_off_account",
+                            "label": "Write-off Account",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "warehouse",
+                            "label": "Default Warehouse",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "is_default",
+                            "label": "Is Default",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                },
+                "Shift": {
+                    "label": "Shift",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Shift ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "pos_profile",
+                            "label": "POS Profile",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "cashier",
+                            "label": "Cashier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "opening_time",
+                            "label": "Opening Time",
+                            "type": "datetime",
+                            "required": true
+                        },
+                        {
+                            "name": "closing_time",
+                            "label": "Closing Time",
+                            "type": "datetime",
+                            "required": false
+                        },
+                        {
+                            "name": "opening_balance",
+                            "label": "Opening Balance",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "closing_balance",
+                            "label": "Closing Balance",
+                            "type": "number",
+                            "required": false
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Open", "Closed"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "SalesAndCustomerManagement",
+            "name": "Sales and Customer Management",
+            "entities": {
+                "Customer": {
+                    "label": "Customer",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Customer Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "customer_group",
+                            "label": "Customer Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "territory",
+                            "label": "Territory",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "customer_type",
+                            "label": "Customer Type",
+                            "type": "select",
+                            "options": ["Individual", "Company"],
+                            "required": true
+                        },
+                        {
+                            "name": "loyalty_points",
+                            "label": "Loyalty Points",
+                            "type": "number",
+                            "read_only": true
+                        },
+                        {
+                            "name": "default_currency",
+                            "label": "Default Currency",
+                            "type": "text",
+                            "required": false
+                        }
+                    ]
+                },
+                "SalesOrder": {
+                    "label": "Sales Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Sales Order ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Order Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "delivery_date",
+                            "label": "Delivery Date",
+                            "type": "date",
+                            "required": false
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Confirmed", "Delivered", "Cancelled"],
+                            "required": true
+                        }
+                    ]
+                },
+                "SalesInvoice": {
+                    "label": "Sales Invoice",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "sales_order",
+                            "label": "Sales Order",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Paid", "Unpaid", "Overdue", "Cancelled"],
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "InventoryAndStockManagement",
+            "name": "Inventory and Stock Management",
+            "entities": {
+                "Item": {
+                    "label": "Item",
+                    "fields": [
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true,
+                            "read_only": true
+                        },
+                        {
+                            "name": "item_name",
+                            "label": "Item Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "item_group",
+                            "label": "Item Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "stock_uom",
+                            "label": "Stock UOM",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "description",
+                            "label": "Description",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "is_stock_item",
+                            "label": "Is Stock Item",
+                            "type": "checkbox",
+                            "required": true
+                        },
+                        {
+                            "name": "has_batch_no",
+                            "label": "Has Batch No",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                },
+                "Warehouse": {
+                    "label": "Warehouse",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Warehouse Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "company",
+                            "label": "Company",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "address",
+                            "label": "Address",
+                            "type": "textarea",
+                            "required": false
+                        },
+                        {
+                            "name": "is_group",
+                            "label": "Is Group",
+                            "type": "checkbox",
+                            "required": false
+                        }
+                    ]
+                },
+                "StockLedgerEntry": {
+                    "label": "Stock Ledger Entry",
+                    "fields": [
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "warehouse",
+                            "label": "Warehouse",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "actual_qty",
+                            "label": "Actual Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "voucher_type",
+                            "label": "Voucher Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "voucher_no",
+                            "label": "Voucher No",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "PricingAndPromotions",
+            "name": "Pricing and Promotions",
+            "entities": {
+                "PriceList": {
+                    "label": "Price List",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Price List Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "currency",
+                            "label": "Currency",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "valid_from",
+                            "label": "Valid From",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "valid_upto",
+                            "label": "Valid Upto",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                },
+                "ItemPrice": {
+                    "label": "Item Price",
+                    "fields": [
+                        {
+                            "name": "item_code",
+                            "label": "Item Code",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "price_list",
+                            "label": "Price List",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "price_list_rate",
+                            "label": "Rate",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "valid_from",
+                            "label": "Valid From",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                },
+                "PromotionScheme": {
+                    "label": "Promotion Scheme",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Promotion Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "applicable_items",
+                            "label": "Applicable Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "discount_percentage",
+                            "label": "Discount (%)",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "valid_from",
+                            "label": "Valid From",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "valid_upto",
+                            "label": "Valid Upto",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "Purchasing",
+            "name": "Purchasing (Procurement)",
+            "entities": {
+                "Supplier": {
+                    "label": "Supplier",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Supplier Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "supplier_group",
+                            "label": "Supplier Group",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "default_currency",
+                            "label": "Default Currency",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "country",
+                            "label": "Country",
+                            "type": "text",
+                            "required": true
+                        }
+                    ]
+                },
+                "PurchaseOrder": {
+                    "label": "Purchase Order",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Purchase Order ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "supplier",
+                            "label": "Supplier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "transaction_date",
+                            "label": "Order Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Draft", "Ordered", "Received", "Cancelled"],
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        }
+                    ]
+                },
+                "PurchaseReceipt": {
+                    "label": "Purchase Receipt",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Purchase Receipt ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "purchase_order",
+                            "label": "Purchase Order",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "received_qty",
+                            "label": "Received Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "LoyaltyAndMembership",
+            "name": "Loyalty and Membership",
+            "entities": {
+                "LoyaltyProgram": {
+                    "label": "Loyalty Program",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Program Name",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "points_per_currency",
+                            "label": "Points Per Currency Unit",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "expense_account",
+                            "label": "Expense Account",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "validity_from",
+                            "label": "Valid From",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "validity_upto",
+                            "label": "Valid Upto",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                },
+                "LoyaltyPointEntry": {
+                    "label": "Loyalty Point Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "sales_invoice",
+                            "label": "Sales Invoice",
+                            "type": "text",
+                            "required": false
+                        },
+                        {
+                            "name": "points",
+                            "label": "Points",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "entry_type",
+                            "label": "Entry Type",
+                            "type": "select",
+                            "options": ["Earned", "Redeemed"],
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "Member": {
+                    "label": "Member",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Member ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer",
+                            "label": "Customer",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "status",
+                            "label": "Status",
+                            "type": "select",
+                            "options": ["Active", "Inactive"],
+                            "required": true
+                        },
+                        {
+                            "name": "join_date",
+                            "label": "Join Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "expiry_date",
+                            "label": "Expiry Date",
+                            "type": "date",
+                            "required": false
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "id": "AccountingAndFinance",
+            "name": "Accounting and Finance",
+            "entities": {
+                "JournalEntry": {
+                    "label": "Journal Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Journal Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        },
+                        {
+                            "name": "voucher_type",
+                            "label": "Voucher Type",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "accounts",
+                            "label": "Accounts",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_debit",
+                            "label": "Total Debit",
+                            "type": "number",
+                            "read_only": true
+                        },
+                        {
+                            "name": "total_credit",
+                            "label": "Total Credit",
+                            "type": "number",
+                            "read_only": true
+                        }
+                    ]
+                },
+                "PaymentEntry": {
+                    "label": "Payment Entry",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Payment Entry ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "party_type",
+                            "label": "Party Type",
+                            "type": "select",
+                            "options": ["Customer", "Supplier"],
+                            "required": true
+                        },
+                        {
+                            "name": "party",
+                            "label": "Party",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "payment_type",
+                            "label": "Payment Type",
+                            "type": "select",
+                            "options": ["Receive", "Pay"],
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                },
+                "Invoice": {
+                    "label": "Invoice",
+                    "fields": [
+                        {
+                            "name": "name",
+                            "label": "Invoice ID",
+                            "type": "text",
+                            "read_only": true
+                        },
+                        {
+                            "name": "customer_supplier",
+                            "label": "Customer/Supplier",
+                            "type": "text",
+                            "required": true
+                        },
+                        {
+                            "name": "items",
+                            "label": "Items",
+                            "type": "table",
+                            "required": true
+                        },
+                        {
+                            "name": "total_amount",
+                            "label": "Total Amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        {
+                            "name": "posting_date",
+                            "label": "Posting Date",
+                            "type": "date",
+                            "required": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

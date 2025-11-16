@@ -1,0 +1,789 @@
+
+================================================================================
+[2025-10-31 13:06:09.704014] NEW ANALYSIS TRIGGERED
+Product: Raw chocolate | Country: Ecuador | Mode: quick
+Search ID: 202
+================================================================================
+
+
+[MODE] Analyzing ONLY search ID: 202
+[OPTIMIZATION] This prevents re-analyzing old searches
+
+
+================================================================================
+[START] COMPREHENSIVE BUSINESS ANALYSIS PIPELINE
+================================================================================
+[TIME] Started: 2025-10-31 13:06:12.483803
+[MODE] Processing specific search ID: 202
+================================================================================
+
+[DB] Initializing Supabase connection...
+[OK] Connected to Supabase: https://zjyudmfmsbppumzurhfc.supabase.co
+[DB] Connection established
+
+
+[SUPABASE] Loading data for specific search ID: 202...
+[OK] Loaded 4 businesses from Supabase
+[ANALYZE] Analyzing all 4 businesses
+
+================================================================================
+Progress: 1/4
+================================================================================
+[NEW] Analyzing new supplier: Freshdi
+
+================================================================================
+[ANALYZE] Company: Freshdi
+[URL] https://freshdi.com/supplier/BARRY-CALLEBAUT-ECUADOR-SA
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://freshdi.com/supplier/BARRY-CALLEBAUT-ECUADOR-SA (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [EXTRACT] Trying structured selectors for contact info...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: email, address
+[OK] Analysis complete for BARRY CALLEBAUT ECUADOR SA
+
+[LOCATION COMPARISON]
+  Database location: 'Ecuador'
+  Analyzer location: 'None'
+  [LOCATION] Analyzer found no location, using database location
+  Final location: 'Ecuador' (source: database)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=freshdi.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Freshdi
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 10 mentions
+  [SUMMARY] Freshdi has garnered a largely positive reputation in the online space, with multiple mentions highlighting its effectiveness as a B2B marketplace and the reliability of its services. Customer reviews are favorable, indicating a strong trust in the platform.
+
+[STEP 5] Scoring
+  [OK] Score: 15.2/25 (Grade: C) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Limited contact options: email only. No certifications detected - credibility unclear. Not found on major B2B plat...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Freshdi
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 2/4
+================================================================================
+[NEW] Analyzing new supplier: Grandsur
+
+================================================================================
+[ANALYZE] Company: Grandsur
+[URL] https://grandsur.com/en/nosotros/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://grandsur.com/en/nosotros/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Km. 20 Vía Durán – Boliche E40, San Jacinto de Yag...
+  [CERTS] Detected 2 certifications: UL Listed, REACH
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Km. 20 Vía Durán – Boliche E40, San Jacinto de Yag...
+  [OK] Contact info found: email, phone, address
+  [AI] Enhanced founded year: 2016
+[OK] Analysis complete for GrandSur
+
+[LOCATION COMPARISON]
+  Database location: 'Ecuador'
+  Analyzer location: 'Km. 20 Vía Durán – Boliche E40, San Jacinto de Yaguachi, Ecuador  
+Vía a Quevedo Junto a AGROMAÍZ, Buena Fe, Los Ríos, Ecuador'
+  [LOCATION] Analyzer location is more precise (score: 75 vs 0)
+  Final location: 'Km. 20 Vía Durán – Boliche E40, San Jacinto de Yaguachi, Ecuador  
+Vía a Quevedo Junto a AGROMAÍZ, Buena Fe, Los Ríos, Ecuador' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=grandsur.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Grandsur
+  [ANALYZING] Analyzing sentiment of 9 mentions...
+  [OK] Sentiment Score: 75/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (75/100) from 9 mentions
+  [SUMMARY] GrandSur (GrandSouth S.A.) is perceived positively in online mentions, particularly for its commitment to sustainability in cocoa production and its quality offerings. There are no negative mentions, indicating a strong reputation in its industry.
+
+[STEP 5] Scoring
+  [OK] Score: 16.8/25 (Grade: C+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. Moderate credibility with 2 certification(s): UL Listed, REACH. Not found on...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Grandsur
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 3/4
+================================================================================
+[NEW] Analyzing new supplier: Lovechock
+
+================================================================================
+[ANALYZE] Company: Lovechock
+[URL] https://www.lovechock.com/index.php/about/our-direct-trade
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.lovechock.com/index.php/about/our-direct-trade (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Asterweg 20 E, 11031 HN Amsterdam, Netherlands...
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Asterweg 20 E, 11031 HN Amsterdam, Netherlands...
+  [OK] Contact info found: email, phone, address
+[OK] Analysis complete for Lovechock.com
+
+[LOCATION COMPARISON]
+  Database location: 'Ecuador'
+  Analyzer location: 'Asterweg 20 E, 11031 HN Amsterdam, Netherlands'
+  [LOCATION] Analyzer location is more precise (score: 125 vs 0)
+  Final location: 'Asterweg 20 E, 11031 HN Amsterdam, Netherlands' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.lovechock.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Lovechock
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 10 mentions
+  [SUMMARY] Overall, Lovechock enjoys a very positive reputation, highlighted by enthusiastic customer reviews and a focus on sustainability and quality. The recent acquisition indicates growth potential, although there is a minor negative mention regarding product ratings.
+
+[STEP 5] Scoring
+  [OK] Score: 15.2/25 (Grade: C) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. No certifications detected - credibility unclear. Not found on major B2B pla...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Lovechock
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 4/4
+================================================================================
+[NEW] Analyzing new supplier: Dir
+
+================================================================================
+[ANALYZE] Company: Dir
+[URL] https://dir.tridge.com/suppliers/category-country/cocoa-products-ecuador
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://dir.tridge.com/suppliers/category-country/cocoa-products-ecuador (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [EXTRACT] Trying structured selectors for contact info...
+  [EXTRACT] Using AI for missing contact information...
+  [AI] Enhanced location: Ecuador
+[OK] Analysis complete for Ecuador Cocoa Products suppliers
+
+[LOCATION COMPARISON]
+  Database location: 'Ecuador'
+  Analyzer location: 'Ecuador'
+  [LOCATION] Database location is better or equal (score: 0 vs 0)
+  Final location: 'Ecuador' (source: database)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=dir.tridge.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Dir
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 60/100 (NEUTRAL)
+  [OK] Sentiment: NEUTRAL (60/100) from 10 mentions
+  [SUMMARY] The overall sentiment towards DIR is moderately positive, with a mix of favorable employee experiences and some negative customer feedback regarding specific services. While there are concerns about management and service quality, many employees report a satisfactory work environment.
+
+[STEP 5] Scoring
+  [OK] Score: 12.8/25 (Grade: D) [**---]
+  [STARS] 2/5 stars
+  [ANALYSIS] CAUTION: This supplier shows concerning gaps in key evaluation areas. Contact information limited or unavailable. No certifications detected - credibility unclear. Not found on major B2B platforms (Al...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Dir
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+[STATS] ANALYSIS COMPLETE - FINAL STATISTICS
+================================================================================
+[TIME] Duration: 0:02:58.394192
+[TOTAL] Total Processed: 4
+[OK] Successful: 4
+[ERROR] Failed: 0
+[ALIBABA] Alibaba Verified: 0
+[THOMASNET] ThomasNet Listed: 0
+================================================================================
+
+[STATS] Database Statistics:
+  total_businesses: 31
+  b2b_platform_verified: 0
+  high_score_businesses: 0
+  average_score: 15.6
+================================================================================
+
+
+================================================================================
+[2025-10-31 13:13:49.142132] NEW ANALYSIS TRIGGERED
+Product: watches | Country: Switzerland | Mode: quick
+Search ID: 203
+================================================================================
+
+
+[MODE] Analyzing ONLY search ID: 203
+[OPTIMIZATION] This prevents re-analyzing old searches
+
+
+================================================================================
+[START] COMPREHENSIVE BUSINESS ANALYSIS PIPELINE
+================================================================================
+[TIME] Started: 2025-10-31 13:13:55.163392
+[MODE] Processing specific search ID: 203
+================================================================================
+
+[DB] Initializing Supabase connection...
+[OK] Connected to Supabase: https://zjyudmfmsbppumzurhfc.supabase.co
+[DB] Connection established
+
+
+[SUPABASE] Loading data for specific search ID: 203...
+[OK] Loaded 9 businesses from Supabase
+[ANALYZE] Analyzing all 9 businesses
+
+================================================================================
+Progress: 1/9
+================================================================================
+[NEW] Analyzing new supplier: Acrotec
+
+================================================================================
+[ANALYZE] Company: Acrotec
+[URL] https://acrotec.ch/en/divisions/watch-jewellery/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://acrotec.ch/en/divisions/watch-jewellery/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Chemin de la Combatte 7, 2802 Develier, Switzerlan...
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Chemin de la Combatte 7, 2802 Develier, Switzerlan...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: phone, address
+[OK] Analysis complete for Acrotec Group
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Chemin de la Combatte 7, 2802 Develier, Switzerland'
+  [LOCATION] Analyzer location is more precise (score: 65 vs 0)
+  Final location: 'Chemin de la Combatte 7, 2802 Develier, Switzerland' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=acrotec.ch&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Acrotec
+  [ANALYZING] Analyzing sentiment of 9 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 9 mentions
+  [SUMMARY] Acrotec has a strong positive reputation, highlighted by multiple awards and high employee satisfaction ratings. The only negative mention relates to delayed exits by Carlyle, which does not significantly impact the overall positive sentiment.
+
+[STEP 5] Scoring
+  [OK] Score: 14.2/25 (Grade: C-) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Limited contact options: phone only. No certifications detected - credibility unclear. Not found on major B2B plat...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Acrotec
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 2/9
+================================================================================
+[NEW] Analyzing new supplier: Bucherer
+
+================================================================================
+[ANALYZE] Company: Bucherer
+[URL] https://www.bucherer.com/ch/en/watches
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.bucherer.com/ch/en/watches (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from structured data: Langensandstrasse 27, Lucerne, LU, 6005, CH...
+  [CERTS] Detected 5 certifications: GB Standards, REACH, FCC, CE Marking, UL Listed
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from structured data: Langensandstrasse 27, Lucerne, LU, 6005, CH...
+  [OK] Contact info found: email, phone, address
+[OK] Analysis complete for Luxury Watches – Discover Exquisite Timepieces at Bucherer
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Langensandstrasse 27, Lucerne, LU, 6005, CH'
+  [LOCATION] Analyzer location is more precise (score: 110 vs 0)
+  Final location: 'Langensandstrasse 27, Lucerne, LU, 6005, CH' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.bucherer.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Bucherer
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 35/100 (NEUTRAL)
+  [OK] Sentiment: NEUTRAL (35/100) from 10 mentions
+  [SUMMARY] Bucherer is facing a predominantly negative sentiment due to recent news of Rolex discontinuing the brand and shutting down operations, alongside customer complaints regarding service and product availability. While there are some positive mentions, the overall reputation appears to be declining amid significant challenges.
+
+[STEP 5] Scoring
+  [OK] Score: 15.2/25 (Grade: C) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. Strong credibility with 5 certifications (GB Standards, REACH, FCC). Not fou...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Bucherer
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 3/9
+================================================================================
+[NEW] Analyzing new supplier: Richelieu-swiss
+
+================================================================================
+[ANALYZE] Company: Richelieu-swiss
+[URL] https://www.richelieu-swiss.ch/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.richelieu-swiss.ch/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [EXTRACT] Trying structured selectors for contact info...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: email, phone
+  [AI] Enhanced location: Les Genevez, Jura Region, Switzerland
+  [AI] Enhanced founded year: 1966
+[OK] Analysis complete for Richelieu Watches
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Les Genevez, Jura Region, Switzerland'
+  [LOCATION] Analyzer location is more precise (score: 55 vs 0)
+  Final location: 'Les Genevez, Jura Region, Switzerland' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.richelieu-swiss.ch&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Richelieu-swiss
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 75/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (75/100) from 10 mentions
+  [SUMMARY] Overall, Richelieu Swiss has a positive reputation, particularly in the context of its recent acquisition and the favorable customer feedback regarding its watch products. There are no negative mentions, indicating a strong brand presence and customer satisfaction.
+
+[STEP 5] Scoring
+  [OK] Score: 13.0/25 (Grade: D+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] CAUTION: This supplier shows concerning gaps in key evaluation areas. Good contactability via email, phone. No certifications detected - credibility unclear. Not found on major B2B platforms (Alibaba,...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Richelieu-swiss
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 4/9
+================================================================================
+[NEW] Analyzing new supplier: Luxurysociety
+
+================================================================================
+[ANALYZE] Company: Luxurysociety
+[URL] https://luxurysociety.com/en/7-top-watch-retailers-in-switzerland/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://luxurysociety.com/en/7-top-watch-retailers-in-switzerland/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [EXTRACT] Trying structured selectors for contact info...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: phone
+[OK] Analysis complete for 7 Top Watch Retailers In Switzerland
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'None'
+  [LOCATION] Analyzer found no location, using database location
+  Final location: 'Switzerland' (source: database)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=luxurysociety.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Luxurysociety
+  [ANALYZING] Analyzing sentiment of 7 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 7 mentions
+  [SUMMARY] Luxury Society is perceived very positively, highlighted as a leading resource for luxury professionals and praised for its exclusive insights and trends. There are no negative mentions, indicating a strong reputation within the luxury industry.
+
+[STEP 5] Scoring
+  [OK] Score: 15.2/25 (Grade: C) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Limited contact options: phone only. No certifications detected - credibility unclear. Not found on major B2B plat...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Luxurysociety
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 5/9
+================================================================================
+[NEW] Analyzing new supplier: Timeworld
+
+================================================================================
+[ANALYZE] Company: Timeworld
+[URL] https://www.timeworld.ch/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.timeworld.ch/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Avenue de Cour 101 - 1007 Lausanne, Switzerland...
+  [CERTS] Detected 2 certifications: CE Marking, GMP
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Avenue de Cour 101 - 1007 Lausanne, Switzerland...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: phone, address
+[OK] Analysis complete for TimeWorld
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Avenue de Cour 101 - 1007 Lausanne, Switzerland'
+  [LOCATION] Analyzer location is more precise (score: 85 vs 0)
+  Final location: 'Avenue de Cour 101 - 1007 Lausanne, Switzerland' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.timeworld.ch&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Timeworld
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 75/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (75/100) from 10 mentions
+  [SUMMARY] TimeWorld is generally perceived positively, particularly among watch collectors and enthusiasts, as evidenced by high ratings and positive user feedback. However, there is limited news coverage and activity compared to competitors, which may affect its overall visibility.
+
+[STEP 5] Scoring
+  [OK] Score: 16.0/25 (Grade: C+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Limited contact options: phone only. Moderate credibility with 2 certification(s): CE Marking, GMP. Not found on m...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Timeworld
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 6/9
+================================================================================
+[NEW] Analyzing new supplier: Galli
+
+================================================================================
+[ANALYZE] Company: Galli
+[URL] https://galli.ch/en/uhren/?srsltid=AfmBOooPl6qL7axKvTdZUcRBfp1jaoNY6uXBKQRU_3ihG0OMQMNvNDYl
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://galli.ch/en/uhren/?srsltid=AfmBOooPl6qL7axKvTdZUcRBfp1jaoNY6uXBKQRU_3ihG0OMQMNvNDYl (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Theaterstrasse 16, on Bellevue, CH-8001 Zurich, Sw...
+  [CERTS] Detected 1 certifications: GMP
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Theaterstrasse 16, on Bellevue, CH-8001 Zurich, Sw...
+  [OK] Contact info found: email, phone, address
+[OK] Analysis complete for Galli Uhren Bijouterie
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Theaterstrasse 16, on Bellevue, CH-8001 Zurich, Switzerland'
+  [LOCATION] Analyzer location is more precise (score: 120 vs 0)
+  Final location: 'Theaterstrasse 16, on Bellevue, CH-8001 Zurich, Switzerland' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=galli.ch&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Galli
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 75/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (75/100) from 10 mentions
+  [SUMMARY] The overall sentiment surrounding 'Galli' is predominantly positive, particularly in the context of the restaurant and news outlets, with many favorable reviews highlighting quality and trustworthiness. However, there is a single negative mention, which does not significantly impact the overall reputation.
+
+[STEP 5] Scoring
+  [OK] Score: 15.8/25 (Grade: C) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. Moderate credibility with 1 certification(s): GMP. Not found on major B2B pl...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Galli
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 7/9
+================================================================================
+[NEW] Analyzing new supplier: Its-time
+
+================================================================================
+[ANALYZE] Company: Its-time
+[URL] https://www.its-time.ch/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.its-time.ch/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from AI: Kapellstrasse 26, CH-2540 Grenchen, Switzerland...
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from AI: Kapellstrasse 26, CH-2540 Grenchen, Switzerland...
+  [OK] Contact info found: email, phone, address
+  [AI] Enhanced founded year: 1992
+[OK] Analysis complete for ITS TIME
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Kapellstrasse 26, CH-2540 Grenchen, Switzerland'
+  [LOCATION] Analyzer location is more precise (score: 95 vs 0)
+  Final location: 'Kapellstrasse 26, CH-2540 Grenchen, Switzerland' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.its-time.ch&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Its-time
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 75/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (75/100) from 10 mentions
+  [SUMMARY] The overall sentiment around 'Its-time' is predominantly positive, particularly in the context of music and user engagement, with no negative mentions found. The positive reception of the song by Imagine Dragons and the emphasis on user research in news indicate a favorable reputation.
+
+[STEP 5] Scoring
+  [OK] Score: 13.0/25 (Grade: D+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] CAUTION: This supplier shows concerning gaps in key evaluation areas. Good contactability via email, phone. No certifications detected - credibility unclear. Not found on major B2B platforms (Alibaba,...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Its-time
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 8/9
+================================================================================
+[NEW] Analyzing new supplier: Beyer-ch
+
+================================================================================
+[ANALYZE] Company: Beyer-ch
+[URL] https://www.beyer-ch.com/en/about-us/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.beyer-ch.com/en/about-us/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [OK] Location from structured data: Bahnhofstrasse 31, Zürich, Zürich, 8001, CH...
+  [EXTRACT] Trying structured selectors for contact info...
+  [OK] Location from structured data: Bahnhofstrasse 31, Zürich, Zürich, 8001, CH...
+  [OK] Contact info found: email, phone, address
+[OK] Analysis complete for As long as time exists
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'Bahnhofstrasse 31, Zürich, Zürich, 8001, CH'
+  [LOCATION] Analyzer location is more precise (score: 90 vs 0)
+  Final location: 'Bahnhofstrasse 31, Zürich, Zürich, 8001, CH' (source: analyzer)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.beyer-ch.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Beyer-ch
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 10 mentions
+  [SUMMARY] Beyer Watches & Jewellery has a strong positive reputation, highlighted by customer recommendations and engaging content. There are no negative mentions, indicating a solid standing in the luxury watch and jewellery market.
+
+[STEP 5] Scoring
+  [OK] Score: 16.2/25 (Grade: C+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. No certifications detected - credibility unclear. Not found on major B2B pla...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Beyer-ch
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+Progress: 9/9
+================================================================================
+[NEW] Analyzing new supplier: Kirchhofer
+
+================================================================================
+[ANALYZE] Company: Kirchhofer
+[URL] https://www.kirchhofer.com/
+================================================================================
+
+[STEP 1] Website Analysis
+[ANALYZING] https://www.kirchhofer.com/ (attempt 1/3, strategy: domcontentloaded)
+  [OK] Page loaded successfully
+  [CERTS] Detected 1 certifications: GMP
+  [EXTRACT] Trying structured selectors for contact info...
+  [EXTRACT] Using AI for missing contact information...
+  [OK] Contact info found: email, phone, address
+[OK] Analysis complete for Instagram & Facebook
+
+[LOCATION COMPARISON]
+  Database location: 'Switzerland'
+  Analyzer location: 'None'
+  [LOCATION] Analyzer found no location, using database location
+  Final location: 'Switzerland' (source: database)
+
+[STEP 2] Favicon Extraction
+  [OK] Favicon URL: https://www.google.com/s2/favicons?domain=www.kirchhofer.com&sz=128
+
+[STEP 3] Marketplace Presence Check
+  [INFO] Skipping marketplace search (captcha protection)
+
+[STEP 4] Social Sentiment Analysis
+  [SEARCHING] Searching for news and mentions about: Kirchhofer
+  [ANALYZING] Analyzing sentiment of 10 mentions...
+  [OK] Sentiment Score: 85/100 (POSITIVE)
+  [OK] Sentiment: POSITIVE (85/100) from 10 mentions
+  [SUMMARY] The overall sentiment surrounding Kirchhofer is very positive, with multiple mentions highlighting achievements and positive experiences, particularly in the context of Brooke Kirchhofer's career and Dr. Jayson Kirchhofer's practice. There are no negative mentions, indicating a strong reputation.
+
+[STEP 5] Scoring
+  [OK] Score: 17.2/25 (Grade: C+) [***--]
+  [STARS] 3/5 stars
+  [ANALYSIS] ACCEPTABLE SUPPLIER: This business meets minimum standards with room for improvement. Good contactability via email, phone. Moderate credibility with 1 certification(s): GMP. Not found on major B2B pl...
+
+[DONE] Analysis Complete!
+================================================================================
+
+
+[DB] Saving to Supabase suplink_discovered table...
+  [OK] Saved new business: Kirchhofer
+  [OK] Saved to suplink_discovered table
+
+[WAIT] Waiting 1 second before next analysis...
+
+================================================================================
+[STATS] ANALYSIS COMPLETE - FINAL STATISTICS
+================================================================================
+[TIME] Duration: 0:09:56.211306
+[TOTAL] Total Processed: 9
+[OK] Successful: 9
+[ERROR] Failed: 0
+[ALIBABA] Alibaba Verified: 0
+[THOMASNET] ThomasNet Listed: 0
+================================================================================
+
+[STATS] Database Statistics:
+  total_businesses: 40
+  b2b_platform_verified: 0
+  high_score_businesses: 0
+  average_score: 15.5
+================================================================================
+

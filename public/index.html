@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart ERP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body class="flex h-screen overflow-hidden">
+    <aside class="w-72 p-6 flex flex-col shadow-lg rounded-r-xl flex-shrink-0 sidebar-light space-y-4">
+        <div class="border-b pb-4 border-gray-200">
+            <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-600">Smart ERP</a>
+            <p class="text-sm text-gray-500">Your customizable workspace</p>
+        </div>
+        <div>
+            <button id="customize-btn" class="w-full btn-primary">
+                + New Domain
+            </button>
+        </div>
+        <nav class="flex-1 overflow-y-auto border-t pt-4 border-gray-200">
+            <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Domains</h2>
+            <ul id="domain-tabs" class="space-y-1"></ul>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-8 overflow-y-auto">
+        <section class="mb-6">
+            <div class="flex items-center bg-white p-1 border border-gray-200 rounded-lg shadow-sm">
+                <input type="text" id="main-query-input" placeholder="Generate a report or ask for a summary..." class="flex-1 p-3 text-lg outline-none border-none w-full bg-transparent">
+                <button id="main-query-button" class="btn-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </button>
+            </div>
+            <div class="mt-2 text-sm text-gray-500">
+                <p>e.g., "Summarize all employees by department", "Generate a sales report for the last quarter."</p>
+            </div>
+        </section>
+
+        <section id="ai-report-container" class="hidden"></section>
+
+        <section id="dynamic-content-panel" class="mt-6">
+            <h2 id="panel-title" class="text-3xl font-bold mb-4">Welcome!</h2>
+            <div id="panel-body" class="space-y-6"></div>
+        </section>
+    </main>
+
+    <div id="main-modal" class="hidden fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative transform transition-all" role="dialog">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 id="modal-title" class="text-xl font-semibold">Modal Title</h3>
+                <button id="modal-close" class="text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <div id="ai-chat-container">
+        <button id="chat-bubble-btn" class="fixed bottom-8 right-8 btn-primary rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8"><path d="m12 3-1.9 4.2-4.3.4 3.3 2.9-.9 4.2 3.8-2.3 3.8 2.3-.9-4.2 3.3-2.9-4.3-.4Z"/><path d="M5 22v-4.4l-2.4-2.4-1-3.6 2.4-3.4 4.4-1.4 4.8 2.2 2.2 4.8-1.4 4.4-3.4 2.4-3.6-1Z"/></svg>
+        </button>
+
+        <div id="chat-window" class="hidden fixed bottom-28 right-8 w-[360px] h-[500px] bg-white rounded-xl shadow-2xl flex flex-col">
+            <div class="chat-header">
+                <h3 class="font-bold">AI Assistant</h3>
+                <button id="chat-close-btn">&times;</button>
+            </div>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+                <div class="chat-message assistant">
+                    <span>Hi! How can I help you today?</span>
+                </div>
+            </div>
+            <div class="p-4 border-t border-gray-200 bg-white rounded-b-xl">
+                <div class="flex items-center bg-gray-100 rounded-lg">
+                    <input type="text" id="chat-input" placeholder="Ask anything..." class="flex-1 bg-transparent p-3 outline-none border-none">
+                    <button id="chat-send-btn" class="p-3 text-gray-500 hover:text-blue-600">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.428A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/erp.js"></script>
+</body>
+
+</html>
+

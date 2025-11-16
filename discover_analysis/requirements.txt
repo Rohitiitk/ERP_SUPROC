@@ -1,0 +1,39 @@
+# Suproc Supplier Discovery - Python Dependencies
+
+# Web Automation
+playwright==1.50.0
+playwright-mcp==0.1.0
+
+# OpenAI
+# bumped to satisfy langchain-openai (requires openai>=1.86.0,<2.0.0)
+openai==1.86.0
+
+# API Requests
+requests==2.32.3
+# bumped to satisfy privy-eth-account (requires httpx>=0.28.1,<0.29.0)
+httpx==0.28.1
+python-whois==0.9.4
+
+# Environment Variables
+python-dotenv==1.0.1
+
+# Data Processing
+pandas==2.2.3
+numpy==2.2.1
+
+# Database
+supabase==2.14.0
+psycopg2-binary==2.9.10
+sqlalchemy==2.0.36
+
+# Async Support
+aiohttp==3.11.11
+asyncio==3.4.3
+aiofiles==24.1.0
+
+# Text Processing & Analysis
+beautifulsoup4==4.12.3
+lxml==5.3.0
+
+# Utilities
+pydantic==2.10.3

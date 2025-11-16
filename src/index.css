@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900;
+    /* This line applies the font to your whole apps */
+    font-family: 'Sora', sans-serif;
+  }
+}
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply p-3 rounded-xl transition-colors relative group;
+  }
+  
+  .nav-item-tooltip {
+    @apply absolute left-full ml-2 px-2 py-1 bg-gray-800 text-white text-sm rounded 
+           opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all;
+  }
+
+  /* Custom styles for react-phone-number-input */
+  .phone-input-custom {
+    @apply flex items-center w-full !important;
+  }
+
+  .phone-input-custom .PhoneInputInput {
+    @apply border-none bg-transparent outline-none shadow-none text-base h-full w-full py-3;
+  }
+  
+  .phone-input-custom .PhoneInputCountry {
+    @apply mr-2;
+  }
+}
+
+/* ─────── Your Loader CSS ─────── */
+.loader {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.item1, .item2, .item3 {
+  position: absolute;
+  background-color: transparent;
+  left: calc(50% - (var(--size) / 2));
+  top: calc(50% - (var(--size) / 2));
+  height: var(--size);
+  width: var(--size);
+  border-radius: 50%;
+}
+
+.loader .item1 {
+  --size: 90px;
+  animation: size1_1 2.5s infinite alternate;
+  z-index: 1;
+}
+
+.loader .item2 {
+  --size: 60px;
+  animation: size1_2 2.5s infinite alternate;
+  z-index: 2;
+}
+
+.loader .item3 {
+  --size: 30px;
+  animation: size1_3 2.5s infinite alternate;
+  z-index: 3;
+}
+
+@keyframes size1_1 {
+  0%, 10% { transform: scale(0); }
+  100% { transform: scale(1); box-shadow: 8px 8px 14px #c5c5c5, -8px -8px 14px #ffffff; }
+}
+
+@keyframes size1_2 {
+  0%, 40% { transform: scale(0); }
+  100% { transform: scale(1); box-shadow: 8px 8px 14px #c5c5c5, -8px -8px 14px #ffffff; }
+}
+
+@keyframes size1_3 {
+  0%, 70% { transform: scale(0); }
+  100% { transform: scale(1); box-shadow: 8px 8px 14px #c5c5c5, -8px -8px 14px #ffffff; }
+
+}
