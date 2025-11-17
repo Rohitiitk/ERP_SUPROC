@@ -1,16 +1,22 @@
 # chatbot_api.py
 
 import os
-import openai
+# import openai
+from openai import OpenAI
 import json
 from flask import Blueprint, request, jsonify, Response, stream_with_context
 import logging
 from docstring_parser import parse
+
 from supabase import create_client, Client  
 import jwt 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # We import all the tools the AI can use
 from .chatbot_tools import available_tools, answer_text, navigate, tool_executor, navigate_message, ask_for_search_mode, start_supplier_search
+from .utils import LOCAL_API_BASE, resolve_chat_model, resolve_embedding_model
 
 chatbot_bp = Blueprint('chatbot_bp', __name__)
 
@@ -88,7 +94,25 @@ def handle_chat():
 
     try:
         init_supabase_client()
-        openai.api_key = os.getenv("OPENAI_API_KEY")
+        # openai.api_key = os.getenv("OPENAI_API_KEY")
+        # --- NEW: Load variables and create client ---
+        api_base = os.getenv('LLM_API_BASE') or LOCAL_API_BASE
+        chat_model = resolve_chat_model()
+        embedding_model = resolve_embedding_model()
+
+        if not api_base:
+            logging.error("Missing LLM_API_BASE configuration.")
+            return jsonify({"error": "Missing LLM config in environment."}), 500
+
+        # Create a single client instance to point to LiteLLM
+        client = OpenAI(
+            api_key="ollama", # Can be anything, LiteLLM doesn't check it
+            base_url=api_base
+        )
+        model_to_use = chat_model
+        # --- End of new client code ---
+
+
 
         session_res = supabase.table('chat_sessions').select('title').eq('id', session_id).single().execute()
         is_new_chat = session_res.data and session_res.data['title'] == 'New Chat'
@@ -97,7 +121,13 @@ def handle_chat():
             new_title = (user_message[:40] + '...') if len(user_message) > 40 else user_message
             supabase.table('chat_sessions').update({'title': new_title}).eq('id', session_id).execute()
 
-        embedding_response = openai.embeddings.create(input=user_message, model="text-embedding-3-small")
+        # embedding_response = openai.embeddings.create(input=user_message, model="text-embedding-3-small")
+
+
+        embedding_response = client.embeddings.create(
+            input=user_message,
+            model=embedding_model,
+        )
         query_embedding = embedding_response.data[0].embedding
         matched_chunks = supabase.rpc('match_knowledge_base', { 'query_embedding': query_embedding, 'match_threshold': 0.30, 'match_count': 5 }).execute()
         context_text = "\n\n---\n\n".join([chunk['content'] for chunk in matched_chunks.data]) if matched_chunks.data else "No relevant context found."
@@ -148,12 +178,27 @@ def handle_chat():
         
         formatted_tools = format_tools_for_openai(available_tools)
 
-        first_response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+
+        formatted_tools = format_tools_for_openai(available_tools)
+
+        # --- MODIFIED: First chat completion call ---
+        first_response = client.chat.completions.create(
+            model=chat_model, # Use your chat model from env
             messages=messages_for_api,
             tools=formatted_tools,
             tool_choice="auto",
         )
+        # --- End of modification ---
+
+        # first_response = openai.chat.completions.create(
+        #     model="gpt-4o-mini",
+        #     messages=messages_for_api,
+        #     tools=formatted_tools,
+        #     tool_choice="auto",
+        # )
+
+
+
         response_message = first_response.choices[0].message
         tool_calls = response_message.tool_calls
 
@@ -179,12 +224,24 @@ def handle_chat():
                 "name": function_name,
                 "content": function_response,
             })
-            
-            second_response = openai.chat.completions.create(
-                model="gpt-4o-mini",
+
+            # --- MODIFIED: Second chat call (in tool block) ---
+            second_response = client.chat.completions.create(
+                model=chat_model, # Use your chat model from env
                 messages=messages_for_api,
                 stream=True
             )
+            # --- End of modification ---
+
+
+
+
+            
+            # second_response = openai.chat.completions.create(
+            #     model="gpt-4o-mini",
+            #     messages=messages_for_api,
+            #     stream=True
+            # )
             
             def stream_and_save(response_stream):
                 full_response_text = ""
@@ -197,11 +254,21 @@ def handle_chat():
             
             return Response(stream_with_context(stream_and_save(second_response)), mimetype='text/plain')
         else:
-            plain_response_stream = openai.chat.completions.create(
-                model="gpt-4o-mini",
+
+            # --- MODIFIED: Plain response call (in else block) ---
+            plain_response_stream = client.chat.completions.create(
+                model=chat_model, # Use your chat model from env
                 messages=messages_for_api,
                 stream=True
             )
+            # --- End of modification ---
+
+
+            # plain_response_stream = openai.chat.completions.create(
+            #     model="gpt-4o-mini",
+            #     messages=messages_for_api,
+            #     stream=True
+            # )
             def stream_and_save(response_stream):
                 full_response_text = ""
                 for chunk in response_stream:

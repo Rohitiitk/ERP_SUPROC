@@ -6,18 +6,36 @@ from openai import OpenAI
 from typing import List, Dict
 from dotenv import load_dotenv
 
+from api.utils import LOCAL_API_BASE, resolve_chat_model
+
 load_dotenv()
 
 class OpenAIService:
     def __init__(self):
         try:
             # Initialize OpenAI client
-            api_key = os.getenv('OPENAI_API_KEY')
-            if not api_key:
-                raise ValueError("OPENAI_API_KEY not found in environment")
+            #### Changed to use Ollama LLM ####
+            # api_key = os.getenv('OPENAI_API_KEY')
+            # if not api_key:
+            #     raise ValueError("OPENAI_API_KEY not found in environment")
 
-            self.client = OpenAI(api_key=api_key)
-            self.model = "gpt-4o-mini"  # Cost-effective model
+            # self.client = OpenAI(api_key=api_key)
+            # self.model = "gpt-4o-mini" 
+            load_dotenv()
+            self.api_base = os.getenv('LLM_API_BASE') or LOCAL_API_BASE
+            self.model_name = resolve_chat_model()
+
+            if not self.api_base:
+                raise ValueError("LLM_API_BASE not found in environment")
+
+            self.client = OpenAI(
+    api_key="ollama", # This can be anything, it's not used
+    base_url=self.api_base
+)
+            self.model = self.model_name
+            # 
+            # 
+            #  # Cost-effective model
             self._initialized = True
         except Exception as e:
             print(f"[WARNING] Failed to initialize OpenAI client: {e}")

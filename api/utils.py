@@ -1,6 +1,6 @@
 import asyncio
 import aiohttp
-import openai
+from openai  import OpenAI
 import json
 from bs4 import BeautifulSoup
 import re
@@ -32,6 +32,51 @@ ROOT_DIR = Path(__file__).resolve().parents[1]  # project root (one level above 
 load_dotenv(ROOT_DIR / ".env")
 load_dotenv(ROOT_DIR / ".env.local", override=True)
 
+# === NEW: Add these global variables for local LLM ===
+LOCAL_API_BASE = os.getenv("LLM_API_BASE")
+
+SAFE_FALLBACK_CHAT_MODEL = "ollama/qwen2.5:0.5b-instruct"
+DEFAULT_CHAT_MODEL = os.getenv("DEFAULT_CHAT_MODEL") or SAFE_FALLBACK_CHAT_MODEL
+DEFAULT_EMBEDDING_MODEL = os.getenv("DEFAULT_EMBEDDING_MODEL", "ollama/nomic-embed-text")
+
+
+def _looks_like_embedding_model(model_name: str) -> bool:
+    normalized = model_name.lower()
+    return any(keyword in normalized for keyword in ("embed", "text-embedding"))
+
+
+def resolve_chat_model(candidate: Optional[str] = None) -> str:
+    """Return a chat-capable model, skipping any embedding-only candidates."""
+    ordered_candidates = [candidate, os.getenv("LLM_MODEL"), DEFAULT_CHAT_MODEL, SAFE_FALLBACK_CHAT_MODEL]
+    for source in ordered_candidates:
+        if not source:
+            continue
+        chosen = source.strip()
+        if not chosen:
+            continue
+        if _looks_like_embedding_model(chosen):
+            logging.warning("Chat model %s appears to be embedding-only; skipping", chosen)
+            continue
+        return chosen
+    logging.warning("No valid chat model configured; defaulting to %s", SAFE_FALLBACK_CHAT_MODEL)
+    return SAFE_FALLBACK_CHAT_MODEL
+
+
+def resolve_embedding_model(candidate: Optional[str] = None) -> str:
+    """Resolve the embedding model with sane defaults."""
+    chosen = (candidate or os.getenv("EMBEDDING_MODEL") or DEFAULT_EMBEDDING_MODEL).strip()
+    if not _looks_like_embedding_model(chosen):
+        logging.warning(
+            "Embedding model %s does not look like an embedding-targeted model; continuing anyway",
+            chosen,
+        )
+    return chosen
+
+
+LOCAL_CHAT_MODEL = resolve_chat_model()
+LOCAL_EMBEDDING_MODEL = resolve_embedding_model()
+# === END NEW CODE ===
+
 # Optional: import local, git-ignored hardcoded secrets if present.
 # Create api/app_secrets.py with the variables below to hardcode secrets *safely* without committing them.
 # Example (do NOT commit):
@@ -51,7 +96,8 @@ except Exception:
 # === Hardcoded fallbacks
 # =========================
 # Preserve the same hardcoded OpenAI and Tavily fallbacks you already use in app.py
-HARDCODED_OPENAI_API_KEY = "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"
+# HARDCODED_OPENAI_API_KEY = "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"
+HARDCODED_OPENAI_API_KEY = None
 HARDCODED_TAVILY_API_KEY = "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"
 # (No hardcoded Serper key value available here; we resolve via env or app_secrets.)
 # If you want to hardcode it, put SERPER_API_KEY in api/app_secrets.py or set it in env.
@@ -425,7 +471,13 @@ def _select_phone_via_llm(candidates: list, url: str, region: str, openai_api_ke
     Ask OpenAI to pick the primary business phone number using context and return only the number.
     """
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
+        # openai.api_key = resolve_openai_key(openai_api_key)
+        # openai.api_base = LOCAL_API_BASE
+        # openai.api_key = "ollama" # Dummy key
+
+        client = OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        
+        model_to_use = LOCAL_CHAT_MODEL
         shortlist = candidates[:6]  # cap to keep prompt small
         items = []
         for i, c in enumerate(shortlist, 1):
@@ -446,8 +498,10 @@ Task:
 Candidates:
 {joined}
 """
-        resp = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        resp = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are a careful data extractor for procurement. Return only the phone number."},
                 {"role": "user", "content": prompt}
@@ -572,9 +626,12 @@ def validate_link(link, product_name, region, openai_api_key):
     """
 
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        # openai.api_key = resolve_openai_key(openai_api_key)
+
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        response = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -630,9 +687,12 @@ def validate_link_from_text(link: str, product_name: str, region: str, website_t
     """
 
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        # openai.api_key = resolve_openai_key(openai_api_key)
+
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        response = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -674,9 +734,11 @@ def get_contact_details(html_content, openai_api_key):
     """
 
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        # openai.api_key = resolve_openai_key(openai_api_key)
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        response = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
@@ -741,9 +803,12 @@ def get_top_producing_countries(product_name, openai_api_key):
     )
 
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
-        resp = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
+        # openai.api_key = resolve_openai_key(openai_api_key)
+
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        resp = client.chat.completions.create(
+            model=model_to_use ,
             messages=[
                 {"role": "system",  "content": "You are a helpful assistant."},
                 {"role": "user",    "content": prompt}
@@ -923,9 +988,12 @@ def get_gpt_suggestions(main_product, openai_api_key, serper_api_key):
     if not search_results:
         return ["No relevant search results found. Please check your product name."]
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
-        response = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        # openai.api_key = resolve_openai_key(openai_api_key)
+
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        response = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are an assistant. Only list the components needed to build the product. Do not add any introductory or closing sentences."},
                 {"role": "user", "content": f"Provide a list of components needed to build a {main_product} based on these search results: {search_results}."}
@@ -1073,7 +1141,9 @@ def summarise_supplier(product_name: str, region: str, url: str, website_text: s
     for the given product/location. Keep it professional and to the main point.
     """
     try:
-        openai.api_key = resolve_openai_key(openai_api_key)
+        # openai.api_key = resolve_openai_key(openai_api_key)
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL 
         prompt = f"""Write a concise professional summary (1 sentence, max 2) explaining the key reason this page is a relevant bulk supplier for '{product_name}' in '{region}'. Focus on the primary capability, product fit, or scale; avoid fluff or marketing language.
 
 URL: {url}
@@ -1081,7 +1151,7 @@ URL: {url}
 Page text (truncated):
 {(website_text or '')[:2500]}
 """
-        resp = openai.chat.completions.create(
+        resp = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "You are a procurement assistant. Be concise and specific."},

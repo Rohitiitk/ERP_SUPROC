@@ -10,11 +10,12 @@ from datetime import datetime, date
 from pathlib import Path
 import uuid
 import requests
-import openai
+from openai import OpenAI
 from urllib.parse import parse_qsl, quote, unquote, urlsplit, urlunsplit, urlencode
 
 # --- Local Imports ---
 from . import database_manager
+from .utils import LOCAL_API_BASE, resolve_chat_model, resolve_embedding_model
 from collections import defaultdict
 from decimal import Decimal
 from typing import Any, Dict, Iterable, List, Tuple, Optional
@@ -26,8 +27,13 @@ load_dotenv(ROOT_DIR / ".env")
 load_dotenv(ROOT_DIR / ".env.local", override=True)
 
 # --- OpenAI Config (ENV first, optional) ---
-openai.api_key = os.environ.get("OPENAI_API_KEY")
-OPENAI_CHAT_MODEL = os.environ.get("OPENAI_CHAT_MODEL", "gpt-4o-mini")
+# openai.api_key = os.environ.get("OPENAI_API_KEY")
+# OPENAI_CHAT_MODEL = os.environ.get("OPENAI_CHAT_MODEL", "gpt-4o-mini")
+
+# We set the key/base *inside* each function to avoid global conflicts.
+# --- OpenAI Config (Modified for Local LLM) ---
+LOCAL_CHAT_MODEL = resolve_chat_model()
+LOCAL_EMBEDDING_MODEL = resolve_embedding_model()
 
 # --- Industry Config Paths ---
 INDUSTRY_CONFIGS = {
@@ -1175,8 +1181,15 @@ def get_overview_snapshot():
                     ),
                 },
             ]
-            summary_response = openai.chat.completions.create(
-                model=OPENAI_CHAT_MODEL,
+
+            # openai.api_base = LOCAL_API_BASE
+            # openai.api_key = "ollama"
+
+
+            client = OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+            model_to_use = LOCAL_CHAT_MODEL
+            summary_response = client.chat.completions.create(
+                model=model_to_use,
                 messages=messages,
                 temperature=0.4,
                 max_tokens=220,
@@ -1606,8 +1619,17 @@ Full ERP Data (JSON):
 Begin the report now.
         """.strip()
 
-        completion = openai.chat.completions.create(
-            model=OPENAI_CHAT_MODEL,
+        
+        
+        # openai.api_base = LOCAL_API_BASE
+        # openai.api_key = "ollama"
+
+        client = OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        
+        model_to_use = LOCAL_CHAT_MODEL
+
+        completion = client.chat.completions.create(
+            model=model_to_use,
             messages=[
                 {"role": "system", "content": "You are an expert data analyst and auditor for an ERP system."},
                 {"role": "user", "content": reporting_prompt}
@@ -1844,8 +1866,15 @@ def handle_chat(data):
         system_prompt = get_chatbot_system_prompt(user_supabase, user_id)
         messages = [{"role": "system", "content": system_prompt}] + chat_history + [{"role": "user", "content": user_message}]
 
-        completion = openai.chat.completions.create(
-            model=OPENAI_CHAT_MODEL,
+
+        # openai.api_base = LOCAL_API_BASE
+        # openai.api_key = "ollama"
+
+
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        completion = client.chat.completions.create(
+            model=model_to_use,
             messages=messages,
             response_format={"type": "json_object"},
         )

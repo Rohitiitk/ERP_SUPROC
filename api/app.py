@@ -7,8 +7,16 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 from supabase import create_client, Client
-import openai
-from .utils import get_top_producing_countries, search_suppliers, search_suppliers_v2, mail
+from openai import OpenAI
+from .utils import (
+    LOCAL_API_BASE,
+    LOCAL_CHAT_MODEL,
+    LOCAL_EMBEDDING_MODEL,
+    get_top_producing_countries,
+    search_suppliers,
+    search_suppliers_v2,
+    mail,
+)
 from .erp_api import erp_bp
 from .socketio_instance import socketio
 from .chatbot_api import chatbot_bp
@@ -93,7 +101,8 @@ load_dotenv(ROOT_DIR / ".env.local", override=True)
 #   MAIL_DEFAULT_SENDER = "no-reply@suproc.com"
 try:
     from .app_secrets import (
-        OPENAI_API_KEY as _OPENAI_HC,
+        # OPENAI_API_KEY as _OPENAI_HC,
+        
         SERPER_API_KEY as _SERPER_HC,
         TAVILY_API_KEY as _TAVILY_HC,
         TURNSTILE_SECRET_KEY as _TURNSTILE_HC,
@@ -120,9 +129,27 @@ except Exception:
 # === OpenAI priming    ===
 # =========================
 # Prime OpenAI client (ALL chat calls use gpt-4o-mini as requested)
-openai.api_key = os.getenv("OPENAI_API_KEY") or _OPENAI_HC
-if not openai.api_key:
-    print("WARNING [app]: OPENAI_API_KEY is not set")
+
+# LOCAL_API_BASE = os.getenv("LLM_API_BASE")
+# LOCAL_CHAT_MODEL = os.getenv("LLM_MODEL") or "ollama/qwen2.5:0.5b-instruct"
+# LOCAL_EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL") or "ollama/nomic-embed-text"
+
+# model_to_use = LOCAL_CHAT_MODEL
+# openai.api_base = LOCAL_API_BASE
+# openai.api_key = "ollama"
+# embedding_model_to_use = LOCAL_EMBEDDING_MODEL
+
+# openai.api_key = os.getenv("OPENAI_API_KEY") or _OPENAI_HC
+# if not openai.api_key:
+#     print("WARNING [app]: OPENAI_API_KEY is not set")
+
+# =========================
+# === OpenAI priming    ===
+# =========================
+# We will create a local client inside each function.
+
+# LOCAL_API_BASE, LOCAL_CHAT_MODEL, and LOCAL_EMBEDDING_MODEL come from utils
+model_to_use = LOCAL_CHAT_MODEL
 
 # =========================
 # === Flask & CORS      ===
@@ -157,9 +184,9 @@ mail.init_app(app)
 # === API Keys Config   ===
 # =========================
 # Keep both env+secrets+hardcoded resolution so the app "just works".
-app.config['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY') or _OPENAI_HC or HARDCODED_OPENAI_API_KEY
-app.config['SERPER_API_KEY'] = os.getenv('SERPER_API_KEY') or _SERPER_HC or HARDCODED_SERPER_API_KEY
-app.config['TAVILY_API_KEY'] = os.getenv('TAVILY_API_KEY') or _TAVILY_HC or HARDCODED_TAVILY_API_KEY
+# app.config['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY') or _OPENAI_HC or HARDCODED_OPENAI_API_KEY
+app.config['SERPER_API_KEY'] = os.getenv('SERPER_API_KEY') or _SERPER_HC
+app.config['TAVILY_API_KEY'] = os.getenv('TAVILY_API_KEY') or _TAVILY_HC
 
 if not app.config['SERPER_API_KEY']:
     print("WARNING [app]: SERPER_API_KEY is not set")
@@ -177,18 +204,15 @@ socketio.init_app(app, cors_allowed_origins="*")
 TURNSTILE_SECRET_KEY = (
     os.getenv("TURNSTILE_SECRET_KEY")
     or _TURNSTILE_HC
-    or HARDCODED_TURNSTILE_SECRET_KEY
 )
 TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 SUPABASE_URL = (
     os.getenv("MASTER_SUPABASE_URL")
     or _SB_URL_HC
-    or HARDCODED_MASTER_SUPABASE_URL
 )
 SUPABASE_KEY = (
     os.getenv("MASTER_SUPABASE_KEY")
     or _SB_KEY_HC
-    or HARDCODED_MASTER_SUPABASE_KEY
 )
 
 if not TURNSTILE_SECRET_KEY:
@@ -295,10 +319,11 @@ def login():
 # =========================
 # === OpenAI Helper     ===
 # =========================
-def get_ai_completion(prompt_text, model="gpt-4o-mini"):
+def get_ai_completion(prompt_text, model="LOCAL_CHAT_MODEL"):
     """Generic function to get a completion from OpenAI (kept on gpt-4o-mini)."""
     try:
-        completion = openai.chat.completions.create(
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        completion = client.chat.completions.create(
             model=model,
             messages=[{"role": "user", "content": prompt_text}]
         )
@@ -336,7 +361,7 @@ def generate_project_summary():
     Key Requirements: {project.get('requirements', {})}
     Based on these details, create a summary of 2-3 sentences.
     """
-    summary = get_ai_completion(prompt, model="gpt-4o-mini")
+    summary = get_ai_completion(prompt, model=LOCAL_CHAT_MODEL)
     if summary:
         return jsonify({"summary": summary})
     else:
@@ -366,7 +391,7 @@ def enhance_supplier_description():
     - Category: {supplier.get('category', 'N/A')}
     - Location: {supplier.get('city')}, {supplier.get('country')}
     """
-    description = get_ai_completion(prompt, model="gpt-4o-mini")
+    description = get_ai_completion(prompt, model=LOCAL_CHAT_MODEL)
     if description:
         return jsonify({"description": description})
     else:
@@ -435,8 +460,11 @@ def generate_and_save_project_embedding():
         content_to_embed = f"Title: {project.get('title', '')}\nDescription: {project.get('description', '')}\nRequirements: {json.dumps(project.get('requirements', {}))}"
 
         # 3. Generate the embedding with OpenAI
-        embedding_response = openai.embeddings.create(
-            model="text-embedding-3-small",
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        embedding_model_to_use = LOCAL_EMBEDDING_MODEL
+        
+        embedding_response = client.embeddings.create(
+            model=embedding_model_to_use,
             input=content_to_embed
         )
         embedding = embedding_response.data[0].embedding
@@ -485,8 +513,11 @@ def generate_supplier_embedding():
         )
 
         # 3. Generate the embedding
-        embedding_response = openai.embeddings.create(
-            model="text-embedding-3-small",
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        embedding_model_to_use = LOCAL_EMBEDDING_MODEL
+        
+        embedding_response = client.embeddings.create(
+            model=embedding_model_to_use,
             input=content_to_embed
         )
         embedding = embedding_response.data[0].embedding
@@ -506,7 +537,7 @@ def generate_supplier_embedding():
 @app.route('/api/top-countries')
 def top_countries():
     product = request.args.get('product', '')
-    countries = get_top_producing_countries(product, app.config['OPENAI_API_KEY'])
+    countries = get_top_producing_countries(product, openai_api_key="ollama")
     return jsonify(countries)
 
 @app.route('/api/results')
@@ -517,7 +548,7 @@ def results():
         product,
         country,
         app.config['SERPER_API_KEY'],
-        app.config['OPENAI_API_KEY']
+        openai_api_key="ollama"
     )
     return jsonify(suppliers)
 
@@ -555,7 +586,7 @@ def unified_search():
             product,
             country,
             app.config['SERPER_API_KEY'],
-            app.config['OPENAI_API_KEY']
+            openai_api_key="ollama"
         )
     else:
         depth = 'advanced' if mode == 'advanced' else 'basic'
@@ -563,7 +594,7 @@ def unified_search():
             product_name=product,
             region=country,
             serper_api_key=app.config['SERPER_API_KEY'],
-            openai_api_key=app.config['OPENAI_API_KEY'],
+            openai_api_key="ollama",
             tavily_api_key=app.config.get('TAVILY_API_KEY'),
             mode=mode,
             tavily_depth=depth,
@@ -584,7 +615,7 @@ def product_faq():
     """
     Returns 5 crisp FAQs for the given product to show during loading.
     Shape: {"faqs":[{"title": "...", "answer": "..."} * up to 5]}
-    Uses OpenAI gpt-4o-mini and caches by product.
+    Uses llama and caches by product.
     """
     product = (request.args.get('product') or '').strip()
     if not product:
@@ -600,7 +631,8 @@ def product_faq():
 
     try:
         # Ensure key is set (already set above, but safe)
-        openai.api_key = app.config['OPENAI_API_KEY']
+        # openai.api_key = app.config['OPENAI_API_KEY']
+        # openai.api_key = openai.api_key  # already set globally
 
         prompt = f"""
 Return a pure JSON object with key "faqs" containing exactly 5 items.
@@ -617,8 +649,11 @@ Rules:
 - Keep answers crisp; practical takeaways for buyers.
         """.strip()
 
-        completion = openai.chat.completions.create(
-            model="gpt-4o-mini",
+        client= OpenAI(api_key="ollama",base_url=LOCAL_API_BASE)
+        model_to_use = LOCAL_CHAT_MODEL
+        
+        completion = client.chat.completions.create(
+            model=model_to_use,
             temperature=0.2,
             max_tokens=450,
             messages=[
